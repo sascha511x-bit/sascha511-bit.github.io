@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>УЧЁТ ЧПУ</title>
+<title>COSWICK PRODUCTION</title>
 <style>
 :root{--bg:#f6f2ea;--card:#ffffff;--card2:#efe8dc;--accent:#9a6b3f;--accent-glow:rgba(154,107,63,.22);--accent2:#5f7482;--ok:#4a7c59;--danger:#b0432f;--warn:#c08a2d;--text:#2e2418;--muted:#8a7a67;--border:#e0d6c4;--mono:'Consolas','Courier New',monospace;--serif:Georgia,'Times New Roman',serif}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-text-size-adjust:100%}
 .topbar{background:var(--card);border-bottom:2px solid var(--accent);padding:0 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 14px rgba(46,36,24,.08);flex-wrap:wrap;gap:8px}
-.logo{font-size:21px;font-weight:700;letter-spacing:3px;padding:16px 0;color:var(--text);display:flex;align-items:center;gap:10px;font-family:var(--serif)}
-.logo .icon{color:var(--accent);font-size:24px}.logo span{color:var(--accent)}
+.logo{font-size:24px;font-weight:900;letter-spacing:4px;padding:16px 0;color:var(--accent);display:flex;align-items:center;gap:12px;font-family:var(--serif)}
+.logo .sub{font-size:11px;font-weight:600;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-left:8px}
 .topbar nav{display:flex;gap:2px;padding:8px 0;flex-wrap:wrap}
 .nav-btn{padding:10px 18px;border:none;background:transparent;color:var(--muted);font-size:13px;font-weight:700;cursor:pointer;border-radius:6px;transition:all .2s;display:flex;align-items:center;gap:6px;text-transform:uppercase;letter-spacing:.5px}
 .nav-btn:hover{color:var(--text);background:rgba(154,107,63,.08)}
@@ -41,7 +41,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .btn-danger{background:var(--danger);color:#fff}.btn-danger:hover{background:#933626}
 .btn-outline{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}.btn-outline:hover{background:rgba(154,107,63,.1)}
 .btn-ghost{background:transparent;color:var(--muted);border:1.5px solid var(--border)}.btn-ghost:hover{border-color:var(--accent2);color:var(--accent2)}
-.btn-sm{padding:7px 14px;font-size:12px}.btn-xs{padding:4px 10px;font-size:11px}
+.btn-sm{padding:7px 14px;font-size:12px}.btn-xs{padding:6px 10px;font-size:13px}
 .actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px}
 .filter-bar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:14px 18px;background:var(--card);border-radius:8px;margin-bottom:16px;border:1px solid var(--border)}
 .filter-bar label{font-size:12px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
@@ -50,56 +50,70 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .items-header h3{font-size:13px;font-weight:800;color:var(--text);text-transform:uppercase;letter-spacing:.5px}
 .dt-row{display:grid;grid-template-columns:1fr 140px 40px;gap:10px;align-items:end;margin-bottom:8px}
 .dt-total{font-weight:800;color:var(--danger);margin-top:6px;min-height:20px;font-family:var(--mono)}
-.dt-line{display:block;font-size:11px;color:var(--muted);margin-top:3px}
-.dict-add{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
-.dict-add input{flex:1;min-width:220px;padding:10px 12px;border-radius:6px;border:1.5px solid var(--border);background:var(--card2);color:var(--text);font-size:14px;outline:none}
+.dict-add{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
+.dict-add input{flex:1;min-width:200px;padding:10px 12px;border-radius:6px;border:1.5px solid var(--border);background:var(--card2);color:var(--text);font-size:14px;outline:none}
 .dict-add input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
-.dict-list{display:flex;flex-wrap:wrap;gap:6px}
-.chip{background:var(--card2);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:12px;display:inline-flex;align-items:center;gap:8px;color:var(--text)}
-.chip b{color:var(--accent)}
-.chip button{background:none;border:none;cursor:pointer;font-size:12px;font-weight:800;padding:0 2px}
-.chip .ren{color:var(--accent2)}
-.chip .del{color:var(--danger)}
+.dict-add label{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.dict-toggle{margin-bottom:10px}
+.dict-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:4px}
+.dict-table th{background:var(--card2);color:var(--accent);font-size:10px;text-transform:uppercase;letter-spacing:.5px;padding:7px 10px;text-align:left;border-bottom:1px solid var(--border)}
+.dict-table td{padding:7px 10px;border-bottom:1px solid var(--border);vertical-align:middle}
+.dict-table tr:hover td{background:rgba(154,107,63,.05)}
+.dict-table .idx{color:var(--muted);font-family:var(--mono);font-size:11px;width:44px}
+.dict-table .act{width:84px;text-align:right;white-space:nowrap}
+.dict-table .normval{font-family:var(--mono);font-weight:800;color:var(--accent);width:130px}
+.icon-btn{background:none;border:none;cursor:pointer;font-size:13px;font-weight:800;padding:3px 7px;border-radius:4px}
+.icon-btn:hover{background:rgba(154,107,63,.12)}
+.icon-btn.ren{color:var(--accent2)}
+.icon-btn.del{color:var(--danger)}
+.group-card{background:var(--card2);border:1.5px solid var(--border);border-radius:8px;padding:14px;margin-bottom:12px}
+.group-card .g-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.group-card .g-title{font-weight:800;color:var(--accent);font-size:14px}
+.group-card .g-nums{font-size:12px;color:var(--muted);font-family:var(--mono)}
+.group-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.g-chip{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:4px 8px;font-size:12px;display:inline-flex;align-items:center;gap:6px}
+.g-chip button{background:none;border:none;cursor:pointer;color:var(--danger);font-weight:800;font-size:12px;padding:0 2px}
 .item-card{background:var(--card2);border-radius:8px;border:1.5px solid var(--border);padding:16px;margin-bottom:12px}
 .item-card:hover{border-color:var(--accent)}
 .item-section{margin-bottom:14px}.item-section:last-of-type{margin-bottom:0}
 .item-section-title{font-size:11px;font-weight:800;color:var(--accent);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;display:flex;align-items:center;gap:6px}
 .item-section-title::before{content:"";width:3px;height:12px;background:var(--accent);border-radius:2px}
-.item-section-fields{display:grid;grid-template-columns:1.9fr 1.1fr .8fr .55fr .8fr 1.05fr;gap:10px;align-items:end}
+.item-section-fields{display:grid;grid-template-columns:1.7fr 1.5fr .8fr .55fr .8fr 1.05fr;gap:10px;align-items:end}
 .item-section-fields .field input,.item-section-fields .field select{padding:10px;font-size:13px}
 .m2-hint{font-size:12px;color:var(--accent2);font-family:var(--mono);min-height:18px;font-weight:700;background:rgba(95,116,130,.08);padding:8px 10px;border-radius:6px;border:1px solid rgba(95,116,130,.2);display:flex;align-items:center}
 .m2-hint:empty{background:transparent;border-color:transparent}
-.item-footer{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:12px;border-top:1px solid var(--border);gap:10px;flex-wrap:wrap}
+.item-footer{display:flex;justify-content:space-between;align-items:end;margin-top:14px;padding-top:12px;border-top:1px solid var(--border);gap:10px;flex-wrap:wrap}
 .item-yield-box{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .item-yield-label{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
 .item-yield-value{font-size:20px;font-weight:900;font-family:var(--mono);color:var(--accent);padding:4px 14px;background:rgba(154,107,63,.08);border-radius:6px;border:1px solid rgba(154,107,63,.25);min-width:90px;text-align:center}
-.item-norm-hint{font-size:11px;color:var(--muted);font-family:var(--mono)}
+.item-norm-hint,.item-prod-hint{font-size:11px;color:var(--muted);font-family:var(--mono)}
+.item-prod-hint{color:var(--accent2);font-weight:700}
 .remove-item{background:var(--danger);color:#fff;border:none;border-radius:6px;padding:10px 18px;font-size:13px;cursor:pointer;font-weight:900}
 .remove-item:hover{background:#933626}
 .ac-dropdown{position:fixed;z-index:3000;background:var(--card);border:1.5px solid var(--accent);border-radius:6px;max-height:280px;overflow-y:auto;box-shadow:0 10px 30px rgba(46,36,24,.18);display:none;max-width:92vw}
 .ac-item{padding:8px 12px;font-size:13px;cursor:pointer;color:var(--text);border-bottom:1px solid var(--border);white-space:normal;line-height:1.4;word-break:break-word}
 .ac-item:last-child{border-bottom:none}
 .ac-item:hover,.ac-item.sel{background:rgba(154,107,63,.15)}
-.editable{cursor:pointer;border-bottom:1.5px dashed var(--muted);padding:2px 6px;border-radius:4px;transition:all .15s}
-.editable:hover{background:rgba(154,107,63,.12);border-bottom-color:var(--accent)}
-.editable:hover::after{content:"✏️";font-size:11px;margin-left:4px;opacity:.8}
-.inline-input{background:#fff;color:var(--text);border:2px solid var(--accent);border-radius:6px;padding:5px 8px;font-size:inherit;font-family:inherit;width:100%;outline:none;box-shadow:0 0 10px var(--accent-glow)}
-select.inline-input{appearance:auto;width:auto;min-width:60px}
-.log-table-wrap{overflow-x:auto;border-radius:8px;border:1px solid var(--border)}
-.log-table{width:100%;border-collapse:collapse;font-size:13px;min-width:1200px}
-.log-table th{background:#2e2418;color:#f6f2ea;padding:12px 10px;text-align:left;font-weight:800;white-space:nowrap;font-size:11px;text-transform:uppercase;letter-spacing:.8px;border-bottom:2px solid var(--accent)}
-.log-table td{padding:10px;border-bottom:1px solid var(--border);vertical-align:top}
-.log-table tbody tr:hover{background:rgba(154,107,63,.06)}
+.log-table-wrap{overflow:auto;border-radius:10px;border:1px solid var(--border);max-height:75vh;background:var(--card);box-shadow:0 2px 10px rgba(46,36,24,.05)}
+.log-table{width:100%;border-collapse:separate;border-spacing:0;font-size:13.5px;min-width:1150px;table-layout:fixed}
+.log-table th{background:#2e2418;color:#f6f2ea;padding:13px 10px;text-align:center;font-weight:700;font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;border-bottom:2px solid var(--accent);border-right:1px solid rgba(246,242,234,.18);white-space:normal;overflow-wrap:break-word;position:sticky;top:0;z-index:2;line-height:1.35}
+.log-table th:last-child{border-right:none}
+.log-table th .th-sub{display:block;font-size:9.5px;color:#c9b8a6;font-weight:600;letter-spacing:.2px;text-transform:none;margin-top:3px}
+.log-table td{padding:14px 10px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);vertical-align:middle;text-align:center;overflow:hidden;overflow-wrap:break-word;word-break:break-word;line-height:1.45}
+.log-table td:last-child{border-right:none}
+.log-table td.num{text-align:center}
+.log-table td[rowspan]{vertical-align:middle;background:rgba(154,107,63,.05)}
 .log-table tbody tr.group-start td{border-top:2px solid var(--accent)}
-.log-table td:nth-child(4),.log-table td:nth-child(6){min-width:220px}
-.col-date{white-space:nowrap;color:var(--accent2);font-family:var(--mono);font-weight:700}
-.col-name{color:var(--ok);font-weight:700}
-.col-center{color:var(--accent);font-family:var(--mono);font-weight:700}
-.col-dt{color:var(--danger);font-weight:700}.col-dt.ok{color:var(--ok)}
-.col-actions{white-space:nowrap;text-align:right}
-.m2-sub{display:block;font-size:11px;color:var(--accent2);font-family:var(--mono);margin-top:3px}
-.rate-sub{display:block;font-size:10px;color:var(--muted);font-family:var(--mono);margin-top:2px}
-.char-sub{display:block;font-size:11px;color:var(--accent2);margin-top:3px;font-style:italic}
+.log-table tbody tr.grp-alt td{background:rgba(95,116,130,.07)}
+.log-table tbody tr.grp-alt td[rowspan]{background:rgba(95,116,130,.10)}
+.log-table tbody tr:hover td{background:rgba(154,107,63,.10)}
+.log-table tfoot td{background:var(--card2);font-weight:800;border-top:2px solid var(--accent);padding:13px 10px;font-family:var(--mono);font-size:13px;text-align:center}
+.cell-main{font-weight:600;color:var(--text)}
+.cell-sub{display:block;font-size:11px;color:var(--muted);margin-top:3px;line-height:1.4}
+.cell-sub.accent{color:var(--accent2)}
+.cell-num{font-family:var(--mono);font-weight:700;font-size:13.5px}
+.cell-big{font-family:var(--mono);font-weight:900;font-size:15px}
+.row-actions{display:flex;flex-direction:column;gap:5px;align-items:center}
 table{width:100%;border-collapse:collapse;font-size:13px}
 th{background:#2e2418;color:#f6f2ea;padding:11px 10px;text-align:left;font-weight:800;white-space:nowrap;font-size:11px;text-transform:uppercase;letter-spacing:.8px;border-bottom:2px solid var(--accent)}
 td{padding:10px;border-bottom:1px solid var(--border)}
@@ -163,16 +177,22 @@ tbody tr:hover{background:rgba(154,107,63,.05)}
 @page{size:A4 landscape;margin:8mm}
 @media print{
   body{background:#fff!important;color:#000!important}
-  .topbar,.filter-bar,.actions,.btn,.toast,.modal-overlay,.col-actions,.hint,.recent-badge,.items-header button,.conn-badge,.ac-dropdown{display:none!important}
+  .topbar,.filter-bar,.actions,.btn,.toast,.modal-overlay,.row-actions,.hint,.recent-badge,.items-header button,.conn-badge,.ac-dropdown,.dict-toggle{display:none!important}
   .panel{display:none!important}.panel.active{display:block!important}
   .content{padding:0;max-width:100%}
-  .card,.stat-card,.gauge-card,.chart-card,.center-bar,.reason-row{background:#fff!important;border:1px solid #999!important;box-shadow:none!important;color:#000!important}
+  .card,.stat-card,.gauge-card,.chart-card,.center-bar,.reason-row,.group-card{background:#fff!important;border:1px solid #999!important;box-shadow:none!important;color:#000!important}
   .card h2,.page-title,.page-title span,.stat-card .value,.stat-card .label,.reason-name,.reason-nums,.center-bar-name,.center-bar-nums,.gauge-stat .val,.gauge-stat .lbl,.chart-title,.gauge-title{color:#000!important;text-shadow:none!important}
   table,th,td{color:#000!important}
   th{background:#ddd!important;border:1px solid #999!important}
   td{border:1px solid #999!important}
-  .log-table{min-width:0}
-  .num,.col-date,.col-name,.col-center,.col-dt,.m2-sub,.rate-sub,.char-sub,.dt-line{color:#000!important}
+  .log-table{min-width:0;table-layout:auto}
+  .log-table th{position:static;border-right:1px solid #999}
+  .log-table th .th-sub{display:none}
+  .log-table-wrap{max-height:none;border:none}
+  .log-table td[rowspan]{background:#fff!important}
+  .log-table tbody tr.grp-alt td{background:#fff!important}
+  .log-table tfoot td{background:#eee!important}
+  .num,.col-date,.cell-main,.cell-sub,.cell-num,.cell-big,.downtime,.no-downtime{color:#000!important}
   .bar-fill{color:#000!important;background:#ccc!important;border:1px solid #999}
   .bar-track{background:#fff!important;border:1px solid #999}
   .stat-card::before{background:#999!important}
@@ -184,9 +204,10 @@ tbody tr:hover{background:rgba(154,107,63,.05)}
   .card h2{font-size:11px;margin-bottom:8px}
   table,.log-table{font-size:9.5px;width:100%}
   th,.log-table th{font-size:8.5px;padding:4px 5px;white-space:normal}
-  td,.log-table td{padding:3px 5px}
-  .log-table td:nth-child(4),.log-table td:nth-child(6){min-width:0}
-  .m2-sub,.rate-sub,.char-sub,.dt-line{font-size:8px;margin-top:1px}
+  td,.log-table td{padding:4px 5px}
+  .cell-sub{font-size:8px;margin-top:1px}
+  .cell-num{font-size:9px}
+  .cell-big{font-size:10px}
   .summary-grid{grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:8px}
   .stat-card{padding:8px}
   .stat-card .value{font-size:15px}
@@ -206,20 +227,53 @@ tbody tr:hover{background:rgba(154,107,63,.05)}
   .chart-svg{max-height:220px}
 }
 @media(max-width:900px){.plan-layout{grid-template-columns:1fr}}
-@media(max-width:768px){.topbar{padding:0 12px}.topbar nav{width:100%;overflow-x:auto}.nav-btn{padding:8px 14px;font-size:12px;white-space:nowrap}.content{padding:16px 12px}.item-section-fields{grid-template-columns:1fr 1fr}.dt-row{grid-template-columns:1fr 100px 36px}.form-grid{grid-template-columns:1fr}table{font-size:12px}.modal{padding:16px}.stat-card .value{font-size:24px}}
+@media(max-width:768px){
+  .topbar{padding:0 10px}
+  .topbar nav{width:100%;overflow-x:auto;flex-wrap:nowrap;padding:4px 0 8px}
+  .nav-btn{padding:9px 13px;font-size:12px;white-space:nowrap}
+  .logo{font-size:20px;padding:12px 0;letter-spacing:3px}
+  .logo .sub{font-size:9px;margin-left:6px}
+  .content{padding:16px 10px}
+  .page-title{font-size:22px}
+  .card{padding:14px}
+  .item-section-fields{grid-template-columns:1fr 1fr}
+  .dt-row{grid-template-columns:1fr 90px 34px}
+  .form-grid{grid-template-columns:1fr}
+  .field input,.field select,.dict-add input{font-size:16px}
+  .btn{padding:11px 16px;font-size:13px}
+  .btn-sm{padding:9px 13px}
+  .actions{gap:8px}
+  .actions .btn{flex:1 1 auto;justify-content:center}
+  .filter-bar{padding:10px 12px;gap:8px}
+  table{font-size:12px}
+  th,td{padding:7px 5px}
+  .log-table{min-width:1050px}
+  .log-table td{padding:10px 7px}
+  .log-table-wrap{max-height:none}
+  .modal{padding:16px}
+  .stat-card .value{font-size:24px}
+  .stat-card{padding:12px}
+  .summary-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .gauge-svg{max-width:200px}
+  .item-footer{flex-direction:column;align-items:stretch}
+  .item-yield-box{justify-content:flex-start}
+  .remove-item{width:100%}
+  .dict-table{font-size:12px}
+  .dict-table td,.dict-table th{padding:6px 6px}
+}
 </style>
 </head>
 <body>
 <header class="topbar">
-  <div class="logo"><span class="icon">⚙</span> УЧЁТ <span>ЧПУ</span></div>
+  <div class="logo">COSWICK<span class="sub">Production</span></div>
   <nav>
     <button class="nav-btn active" id="tab-input" data-text="📝 Ввод" onclick="showTab('input',this)">📝 Ввод</button>
-    <button class="nav-btn locked" id="tab-log" data-text="📋 Журнал" onclick="showTab('log',this)">🔒 📋 Журнал</button>
+    <button class="nav-btn locked" id="tab-log" data-text="📋 Журнал" onclick="showTab('log',this)"> 📋 Журнал</button>
     <button class="nav-btn locked" id="tab-days" data-text="📅 По дням" onclick="showTab('days',this)">🔒 📅 По дням</button>
-    <button class="nav-btn locked" id="tab-months" data-text="📆 По месяцам" onclick="showTab('months',this)">🔒 📆 По месяцам</button>
+    <button class="nav-btn locked" id="tab-months" data-text="📆 По месяцам" onclick="showTab('months',this)">🔒  По месяцам</button>
     <button class="nav-btn locked" id="tab-analytics" data-text="📈 Аналитика" onclick="showTab('analytics',this)">🔒 📈 Аналитика</button>
-    <button class="nav-btn locked" id="tab-dicts" data-text="⚙ Справочники" onclick="showTab('dicts',this)">🔒 ⚙ Справочники</button>
-    <button class="nav-btn locked" id="tab-plan" data-text="📊 План" onclick="showTab('plan',this)">🔒  План</button>
+    <button class="nav-btn locked" id="tab-dicts" data-text="⚙ Справочники" onclick="showTab('dicts',this)">🔒  Справочники</button>
+    <button class="nav-btn locked" id="tab-plan" data-text="📊 План" onclick="showTab('plan',this)">🔒 📊 План</button>
     <button class="nav-btn sys" id="chpwd-btn" style="display:none" onclick="openChpwdModal()">🔑 Пароль</button>
     <button class="nav-btn sys" id="lock-btn" style="display:none" onclick="lockAdmin()">🔒 Заблокировать</button>
   </nav>
@@ -240,35 +294,48 @@ tbody tr:hover{background:rgba(154,107,63,.05)}
       <div class="items-header"><h3>⏱ Простой (можно несколько причин)</h3><button class="btn btn-outline btn-sm" onclick="addDtRow('form-dt')">+ Добавить причину</button></div>
       <div class="dt-wrap" id="form-dt"></div>
       <div class="dt-total" id="form-dt-total"></div>
-      <p class="hint">💡 Если простоя не было — оставьте список пустым. Причина выбирается из подсказок или вписывается своя.</p>
+      <p class="hint">💡 Если простоя не было — оставьте список пустым.</p>
       <div class="items-header" style="margin-top:18px"><h3>🔧 Переработка материала</h3><button class="btn btn-outline btn-sm" onclick="addItemToForm('form-items')">+ Добавить позицию</button></div>
       <div id="form-items"></div>
-      <p class="hint">💡 Наведите курсор на поле названия — выпадет список номенклатуры. Печать текста фильтрует список. Норматив выхода по продукту показывается рядом с выходом.</p>
+      <p class="hint">💡 Наведите курсор на поле названия — выпадет список номенклатуры. Укажите время (мин) — сайт посчитает м²/мин и выполнение норматива.</p>
       <div class="actions"><button class="btn btn-primary" onclick="addRecord()">➕ Добавить запись</button></div>
     </div>
   </div>
 
   <div id="panel-log" class="panel">
     <h1 class="page-title">ЖУРНАЛ <span>ЗАПИСЕЙ</span></h1>
-    <p class="page-sub">Клик по любой ячейке = редактирование. ↩ Отменить / ↪ Повторить — история изменений.</p>
+    <p class="page-sub">Таблица для чтения. Правка (✏️), удаление (), отмена и очистка закрыты паролем нормативов. Ввод записей операторами — свободный.</p>
     <div class="filter-bar">
       <label>РЦ:</label><select id="log-filter" onchange="onFilterChange()"><option value="all">Все</option></select>
       <label>Оператор:</label><select id="log-operator" onchange="onFilterChange()"><option value="all">Все</option></select>
       <div style="flex:1"></div>
       <button class="btn btn-ghost btn-sm" id="undo-btn" onclick="undo()" disabled>↩ Отменить</button>
       <button class="btn btn-ghost btn-sm" id="redo-btn" onclick="redo()" disabled>↪ Повторить</button>
-      <button class="btn btn-ghost btn-sm" onclick="window.print()">🖨 Печать</button>
+      <button class="btn btn-ghost btn-sm" onclick="window.print()"> Печать</button>
       <button class="btn btn-success btn-sm" onclick="exportExcel()">📊 Excel</button>
       <button class="btn btn-success btn-sm" onclick="exportCSV()">📥 CSV</button>
       <button class="btn btn-ghost btn-sm" onclick="clearAll()">🗑 Очистить</button>
     </div>
     <div class="log-table-wrap">
       <table class="log-table">
+        <colgroup>
+          <col style="width:7%"><col style="width:10%"><col style="width:15%"><col style="width:8%"><col style="width:15%"><col style="width:8%"><col style="width:7%"><col style="width:8%"><col style="width:8%"><col style="width:8%"><col style="width:6%">
+        </colgroup>
         <thead><tr>
-          <th>Дата</th><th>Фамилия</th><th>РЦ</th><th>Входящий материал</th><th class="num">Переработано</th>
-          <th>Полуфабрикат</th><th class="num">Готово</th><th class="num">Выход %</th><th class="num">Простой</th><th style="text-align:right">Действия</th>
+          <th>Дата</th>
+          <th>Оператор<span class="th-sub">фамилия · рабочий центр</span></th>
+          <th>Материал (вход)<span class="th-sub">название · характеристика</span></th>
+          <th>Вход<span class="th-sub">м² · кол-во и ед.</span></th>
+          <th>Продукт (выход)<span class="th-sub">название · группа · хар-ка</span></th>
+          <th>Выход<span class="th-sub">м² · кол-во и ед.</span></th>
+          <th>Время<span class="th-sub">мин · м² за мин</span></th>
+          <th>Выполнение норматива<span class="th-sub">% от нормы</span></th>
+          <th>Выход %<span class="th-sub">готово / переработано</span></th>
+          <th>Простой<span class="th-sub">мин · причины</span></th>
+          <th>Правка</th>
         </tr></thead>
         <tbody id="log-body"></tbody>
+        <tfoot id="log-foot"></tfoot>
       </table>
     </div>
     <div id="log-empty" class="empty-msg">Записей нет. Добавьте первую на вкладке «Ввод».</div>
@@ -306,7 +373,7 @@ tbody tr:hover{background:rgba(154,107,63,.05)}
 
   <div id="panel-analytics" class="panel">
     <h1 class="page-title">АНАЛИТИКА <span>МЕСЯЦА</span></h1>
-    <p class="page-sub">Простои, материалы, полуфабрикаты, операторы</p>
+    <p class="page-sub">Простои, материалы, группы продуктов и полная сводка по операторам</p>
     <div class="filter-bar">
       <label>Месяц:</label><select id="analytics-month" onchange="onFilterChange()"></select>
       <label>РЦ:</label><select id="analytics-center" onchange="onFilterChange()"><option value="all">Все</option></select>
@@ -320,44 +387,48 @@ tbody tr:hover{background:rgba(154,107,63,.05)}
     <div class="card"><h2>Статистика по входящим материалам</h2>
       <div style="overflow-x:auto"><table><thead><tr><th>Материал</th><th class="num">Позиций</th><th class="num">Переработано (м²)</th><th class="num">Получено (м²)</th><th class="num">Ср. выход %</th></tr></thead><tbody id="materials-body"></tbody></table></div>
       <div id="materials-empty" class="empty-msg">Нет данных.</div></div>
-    <div class="card"><h2>Статистика по полуфабрикатам</h2>
-      <div style="overflow-x:auto"><table><thead><tr><th>Полуфабрикат</th><th class="num">Позиций</th><th class="num">Произведено (м²)</th><th class="num">Переработано сырья (м²)</th><th class="num">Ср. выход %</th><th class="num">Норматив %</th><th class="num">Откл. п.п.</th></tr></thead><tbody id="products-body"></tbody></table></div>
+    <div class="card"><h2>Статистика по полуфабрикатам и группам</h2>
+      <div style="overflow-x:auto"><table><thead><tr><th>Продукт / группа</th><th class="num">Позиций</th><th class="num">Произведено (м²)</th><th class="num">Смен</th><th class="num">м²/смену факт</th><th class="num">Норматив м²/смену</th><th class="num">Выполнение %</th><th class="num">Время мин</th><th class="num">м²/мин</th><th class="num">Выход %</th><th class="num">Норма %</th><th class="num">Откл. п.п.</th></tr></thead><tbody id="products-body"></tbody></table></div>
       <div id="products-empty" class="empty-msg">Нет данных.</div></div>
     <div class="card"><h2>Детализация простоев по дням</h2>
       <div style="overflow-x:auto"><table><thead><tr><th>Дата</th><th>РЦ</th><th>Оператор</th><th>Причина</th><th class="num">Время (мин)</th></tr></thead><tbody id="downtime-details-body"></tbody></table></div>
       <div id="details-empty" class="empty-msg">Простоев нет.</div></div>
     <div class="card"><h2>Производительность операторов</h2>
-      <div style="overflow-x:auto"><table><thead><tr><th>Оператор</th><th class="num">Записей</th><th class="num">Выпуск (м²)</th><th class="num">Переработано (м²)</th><th class="num">Ср. выход %</th><th class="num">Простой (мин)</th></tr></thead><tbody id="operators-body"></tbody></table></div>
+      <div style="overflow-x:auto"><table><thead><tr><th>Оператор</th><th class="num">Смен</th><th class="num">Факт м²</th><th class="num">Должен м²</th><th class="num">Выполнение %</th><th class="num">м²/смену</th><th class="num">м²/мин</th><th class="num">Вход м²</th><th class="num">Выход %</th><th class="num">Время мин</th><th class="num">Простой мин</th><th class="num">КИВ %</th><th class="num">Ср. выполнение %</th></tr></thead><tbody id="operators-body"></tbody></table></div>
       <div id="operators-empty" class="empty-msg">Нет данных.</div></div>
   </div>
 
   <div id="panel-dicts" class="panel">
     <h1 class="page-title">СПРАВОЧНИКИ <span>И НОРМАТИВЫ</span></h1>
-    <p class="page-sub">Управление номенклатурой, операторами, причинами и нормативами выхода. Изменения сразу применяются на всех компьютерах.</p>
+    <p class="page-sub">Группы продуктов и нормативы закрыты отдельным паролем. Списки свёрнуты, чтобы не листать.</p>
+    <div class="card"><h2>Группы продуктов и нормативы 🔐</h2>
+      <div id="group-gate"></div>
+      <div id="group-body" style="display:none">
+        <div class="dict-add"><input type="text" id="group-title" placeholder="Название группы (напр. Ромб т.15)"><input type="number" id="group-rate" min="0.1" step="0.1" placeholder="Норматив м²/смену" style="max-width:170px"><input type="number" id="group-norm" min="1" step="0.1" placeholder="Норма выхода %" style="max-width:150px"><button class="btn btn-primary btn-sm" onclick="groupCreate()">Создать группу</button></div>
+        <div class="dict-add"><label>Длительность смены (мин):</label><input type="number" id="shift-min-input" min="60" step="10" style="max-width:130px"><button class="btn btn-primary btn-sm" onclick="saveShiftMinutes()">💾 Сохранить</button></div>
+        <p class="hint">Группа объединяет продукты-синонимы: норматив м²/смену и норма выхода берутся из группы, статистика объединяется. Длительность смены нужна для расчёта «должен м²» по времени позиции.</p>
+        <div id="group-list"></div>
+      </div>
+    </div>
     <div class="card"><h2>Входящий материал</h2>
       <div class="dict-add"><input type="text" id="dict-add-materials" placeholder="Новая позиция — впишите и нажмите «Добавить»"><button class="btn btn-primary btn-sm" onclick="dictAdd('materials')">+ Добавить</button></div>
-      <div class="dict-list" id="dict-list-materials"></div>
+      <div id="dict-list-materials"></div>
     </div>
     <div class="card"><h2>Полуфабрикат</h2>
       <div class="dict-add"><input type="text" id="dict-add-semiproducts" placeholder="Новая позиция — впишите и нажмите «Добавить»"><button class="btn btn-primary btn-sm" onclick="dictAdd('semiproducts')">+ Добавить</button></div>
-      <div class="dict-list" id="dict-list-semiproducts"></div>
-    </div>
-    <div class="card"><h2>Нормативы выхода по продуктам</h2>
-      <div class="dict-add"><input type="text" id="norm-product" list="semiproductsList" placeholder="Продукт (из списка или свой)"><input type="number" id="norm-value" min="1" max="300" step="0.1" placeholder="Норма, %" style="max-width:150px"><button class="btn btn-primary btn-sm" onclick="normSet()">Установить</button></div>
-      <p class="hint">Выход ≥ нормы подсвечивается зелёным, до −10 п.п. — жёлтым, ниже — красным (в форме, журнале и аналитике).</p>
-      <div class="dict-list" id="norm-list"></div>
+      <div id="dict-list-semiproducts"></div>
     </div>
     <div class="card"><h2>Операторы</h2>
       <div class="dict-add"><input type="text" id="dict-add-operators" placeholder="Фамилия И.О."><button class="btn btn-primary btn-sm" onclick="dictAdd('operators')">+ Добавить</button></div>
-      <div class="dict-list" id="dict-list-operators"></div>
+      <div id="dict-list-operators"></div>
     </div>
     <div class="card"><h2>Характеристики</h2>
       <div class="dict-add"><input type="text" id="dict-add-chars" placeholder="Например: Клир"><button class="btn btn-primary btn-sm" onclick="dictAdd('chars')">+ Добавить</button></div>
-      <div class="dict-list" id="dict-list-chars"></div>
+      <div id="dict-list-chars"></div>
     </div>
     <div class="card"><h2>Причины простоя</h2>
       <div class="dict-add"><input type="text" id="dict-add-reasons" placeholder="Например: Поломка станка"><button class="btn btn-primary btn-sm" onclick="dictAdd('reasons')">+ Добавить</button></div>
-      <div class="dict-list" id="dict-list-reasons"></div>
+      <div id="dict-list-reasons"></div>
     </div>
   </div>
 
@@ -383,7 +454,7 @@ tbody tr:hover{background:rgba(154,107,63,.05)}
 <div class="modal-overlay" id="edit-modal">
   <div class="modal">
     <button class="modal-close" onclick="closeEditModal()">✕</button>
-    <h2>✏️ Редактирование записи</h2>
+    <h2>✏️ Редактирование записи целиком</h2>
     <div class="form-grid">
       <div class="field"><label>Дата</label><input type="date" id="edit-date"></div>
       <div class="field"><label>Фамилия</label><input type="text" id="edit-name" list="operatorsList" autocomplete="off"></div>
@@ -400,7 +471,7 @@ tbody tr:hover{background:rgba(154,107,63,.05)}
 
 <div class="modal-overlay" id="password-modal">
   <div class="modal small">
-    <h2>🔒 Доступ ограничен</h2>
+    <h2> Доступ ограничен</h2>
     <p class="pwd-note">Эта вкладка доступна только мастеру или руководителю. Введите пароль.</p>
     <div class="field"><label>Пароль</label><input type="password" id="password-input" onkeydown="if(event.key==='Enter')checkPassword()"></div>
     <div class="actions">
@@ -410,10 +481,22 @@ tbody tr:hover{background:rgba(154,107,63,.05)}
   </div>
 </div>
 
+<div class="modal-overlay" id="gpwd-modal">
+  <div class="modal small">
+    <h2>🔐 Правка закрыта</h2>
+    <p class="pwd-note">Изменение и удаление записей, отмена действий и очистка журнала доступны под паролем нормативов.</p>
+    <div class="field"><label>Пароль</label><input type="password" id="gpwd-input" onkeydown="if(event.key==='Enter')checkGpwd()"></div>
+    <div class="actions">
+      <button class="btn btn-primary" onclick="checkGpwd()"> Разблокировать</button>
+      <button class="btn btn-ghost" onclick="closeGpwdModal()">Отмена</button>
+    </div>
+  </div>
+</div>
+
 <div class="modal-overlay" id="chpwd-modal">
   <div class="modal small">
-    <button class="modal-close" onclick="closeChpwdModal()">✕</button>
-    <h2>🔑 Смена пароля</h2>
+    <button class="modal-close" onclick="closeChpwdModal()"></button>
+    <h2> Смена пароля вкладок</h2>
     <div class="field" style="margin-bottom:12px"><label>Текущий пароль</label><input type="password" id="chpwd-old"></div>
     <div class="field" style="margin-bottom:12px"><label>Новый пароль (мин. 4 символа)</label><input type="password" id="chpwd-new"></div>
     <div class="field" style="margin-bottom:12px"><label>Повторите новый пароль</label><input type="password" id="chpwd-new2"></div>
@@ -449,7 +532,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// ═══════════════ БАЗОВЫЕ СПРАВОЧНИКИ (при первом запуске уходят в облако) ═══════════════
 const DEF_OPERATORS=["Комар А.В.","Воронецкий К.В.","Иващенко М.В.","Хамицевич С.И.","Шешко Е.Н.","Шавела Ю.В.","Вашкевич А.П.","Барышевский А.А.","Федорович Е.Д."];
 const DEF_CHARS=["Клир","Стандарт 2","Стандарт"];
 const DEF_REASONS=["Поломка станка","Нет материала","Нет инструмента","Плановое ТО","Смена инструмента","Настройка/Наладка","Ожидание крана","Отключение энергии","Другое"];
@@ -458,21 +540,22 @@ const DEF_MATERIALS=["ПФРШ.ТЕ03 Эльсинор ам. орех торц."
 const DEF_SEMIS=["ТПК.ТЕ03 трапеция дуб (15.00х190х440)","ТПК.ТЕ03 отражение (15.00х134х403.05) дуб","ТПК.ТЕ03 отражение (15.00х190х190) дуб","ТПК.ТЕ03 отражение (15.00х190х380) дуб","ТПК.ТЕ03 отражение (19,05х190х190) дуб","ТПК.ТЕ03 отражение (19.05х134х403.05) дуб","ТПК.ТЕ03 отражение (19.05х190х380) дуб","ТПК.ТЕ01 кофейное зерно дуб (15x127x433,8)","ТПК.ТЕ01 кофейное зерно дуб (19,05x127x433,8)","ТПК.ТЕ01 кофейное зерно орех (15x127x433,8)","ТПК.ТЕ01 кофейное зерно орех (19,05x127x433,8)","ТПК.ТЕ01 Опера Хаус орех (15,00х127х622,03)","ТПК.ТЕ01 Опера Хаус орех (19,05х127х622,03)","ТПК.ТЕ01 ОпераХаус дуб (15×127×622,03)","ТПК.ТЕ01 ОпераХаус дуб (19,05×127×622,03)","ТПК.ТЕ03 лавровый лист т.15 мм, дуб 190","ТПК.ТЕ03 ромб дуб 190","ТПК.ТЕ03 ромб орех 190","ТПК.ТЕ03 ромб т.15 мм, дуб 190","ТПК.ТЕ03 чайный лист дуб (15×190×350)","ТПК.ТЕ03 чайный лист дуб (19.05×190×350)","ТПК.ТЕ03 чайный лист орех (15×190×350)","ТПК.ТЕ03 чайный лист орех (19.05×190×350)","ТПК.ТЕ03 Эльсинор ам. орех (15×190×530,72)","ТПК.ТЕ03 Эльсинор ам. орех (19,05×190×530,72)","ТПК.ТЕ03 Эльсинор дуб (15×190×530,72)","ТПК.ТЕ03 Эльсинор дуб (19,05×190×530,72)"];
 const MONTH_NAMES=["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь"];
 const UNITS=["м²","шт"];
-const RECENT_KEY="cnc_recent_input_v7";
+const RECENT_KEY="cnc_recent_input_v8";
 const SETTINGS_KEY="cnc_settings_v1";
 const UNLOCK_KEY="cnc_unlocked_session";
+const GROUPS_UNLOCK_KEY="cnc_groups_unlocked";
 const HISTORY_LIMIT=50;
 const DICT_META=[["materials","Входящий материал"],["semiproducts","Полуфабрикат"],["operators","Операторы"],["chars","Характеристики"],["reasons","Причины простоя"]];
 
-let records=[],editingId=null,monthlyPlans={},adminPwd="1234";
+let records=[],editingId=null,monthlyPlans={},adminPwd="1234",groupPwd="0000",shiftMinutes=480;
 let dicts={materials:DEF_MATERIALS.slice(),semiproducts:DEF_SEMIS.slice(),operators:DEF_OPERATORS.slice(),chars:DEF_CHARS.slice(),reasons:DEF_REASONS.slice()};
-let norms={};
+let groups=[],rates={},norms={};
+let dictOpen={materials:false,semiproducts:false,operators:false,chars:false,reasons:false};
 let recent={name:"",workCenter:"",items:[]};
 let historyStack=[],redoStack=[];
-let pendingUnlockCallback=null;
+let pendingUnlockCallback=null,pendingGroupCallback=null;
 let settings={logFilter:"all",logOperator:"all",daysFilter:"all",monthsFilter:"all",analyticsMonth:"",analyticsCenter:"all",analyticsOperator:"all"};
 
-// ═══════════════ FIREBASE ═══════════════
 function setConnBadge(on){
   const b=document.getElementById("conn-badge");
   if(on){b.className="conn-badge on";b.textContent="🟢 онлайн"}
@@ -495,7 +578,14 @@ function subscribeAll(){
     fillPlanMonthSelector();renderPlan();
   },function(){});
   onSnapshot(doc(db,"settings","main"),function(d){
-    if(d.exists()){const data=d.data();if(data.pwd)adminPwd=String(data.pwd)}
+    if(d.exists()){
+      const data=d.data();
+      if(data.pwd)adminPwd=String(data.pwd);
+      if(data.groupPwd)groupPwd=String(data.groupPwd);
+      if(typeof data.shiftMinutes==="number"&&data.shiftMinutes>0)shiftMinutes=data.shiftMinutes;
+      const smi=document.getElementById("shift-min-input");
+      if(smi&&document.activeElement!==smi)smi.value=shiftMinutes;
+    }
   },function(){});
   onSnapshot(doc(db,"dicts","main"),function(d){
     if(d.exists()){
@@ -508,17 +598,29 @@ function subscribeAll(){
       refreshDictUI();renderAll();renderActive();
     }
   },function(){});
-  onSnapshot(doc(db,"norms","main"),function(d){
-    norms=d.exists()?d.data():{};
+  onSnapshot(doc(db,"groups","main"),function(d){
+    groups=(d.exists()&&Array.isArray(d.data().list))?d.data().list:[];
     const act=document.querySelector(".panel.active");
     if(act&&act.id==="panel-dicts")renderDicts();
+    renderAll();renderActive();
+  },function(){});
+  onSnapshot(doc(db,"rates","main"),function(d){
+    rates=d.exists()?d.data():{};
+    renderAll();renderActive();
+  },function(){});
+  onSnapshot(doc(db,"norms","main"),function(d){
+    norms=d.exists()?d.data():{};
     renderAll();renderActive();
   },function(){});
 }
 async function seedSettings(){
   const ref=doc(db,"settings","main");
   const snap=await getDoc(ref);
-  if(!snap.exists()){await setDoc(ref,{pwd:"1234"})}
+  if(!snap.exists()){await setDoc(ref,{pwd:"1234",groupPwd:"0000",shiftMinutes:480})}
+  else{
+    const d=snap.data();
+    if(!d.groupPwd){await setDoc(ref,{groupPwd:"0000"},{merge:true})}
+  }
 }
 async function seedDicts(){
   const ref=doc(db,"dicts","main");
@@ -526,26 +628,28 @@ async function seedDicts(){
   if(!snap.exists()){
     await setDoc(ref,{materials:dicts.materials,semiproducts:dicts.semiproducts,operators:dicts.operators,chars:dicts.chars,reasons:dicts.reasons});
   }
+  const gref=doc(db,"groups","main");
+  if(!(await getDoc(gref)).exists()){await setDoc(gref,{list:[]})}
+  const rref=doc(db,"rates","main");
+  if(!(await getDoc(rref)).exists()){await setDoc(rref,{})}
   const nref=doc(db,"norms","main");
-  const nsnap=await getDoc(nref);
-  if(!nsnap.exists()){await setDoc(nref,{})}
+  if(!(await getDoc(nref)).exists()){await setDoc(nref,{})}
 }
 function saveDicts(){
   setDoc(doc(db,"dicts","main"),{materials:dicts.materials,semiproducts:dicts.semiproducts,operators:dicts.operators,chars:dicts.chars,reasons:dicts.reasons})
     .catch(function(e){showToast("Ошибка сохранения справочника: "+e.message,true)});
 }
-function saveNorms(){
-  setDoc(doc(db,"norms","main"),norms)
-    .catch(function(e){showToast("Ошибка сохранения норматива: "+e.message,true)});
-}
+function saveGroups(){setDoc(doc(db,"groups","main"),{list:groups}).catch(function(e){showToast("Ошибка сохранения группы: "+e.message,true)})}
+function saveRates(){setDoc(doc(db,"rates","main"),rates).catch(function(e){showToast("Ошибка сохранения: "+e.message,true)})}
+function saveNorms(){setDoc(doc(db,"norms","main"),norms).catch(function(e){showToast("Ошибка сохранения: "+e.message,true)})}
 
-// ═══════════════ СПРАВОЧНИКИ: UI ═══════════════
 function dictAdd(list){
   const inp=document.getElementById("dict-add-"+list);
   const v=inp.value.trim();
   if(!v){showToast("Введите название!",true);return}
   if(dicts[list].indexOf(v)!==-1){showToast("Уже есть в списке!",true);return}
   dicts[list].push(v);
+  dictOpen[list]=true;
   saveDicts();inp.value="";renderDicts();refreshDictUI();
   showToast("Добавлено в справочник");
 }
@@ -561,39 +665,189 @@ function dictRename(list,idx){
   dicts[list][idx]=t;
   saveDicts();renderDicts();refreshDictUI();
 }
-function normSet(){
-  const p=document.getElementById("norm-product").value.trim();
-  const v=parseFloat(document.getElementById("norm-value").value);
-  if(!p){showToast("Укажите продукт!",true);return}
-  if(!v||v<=0){showToast("Норматив должен быть больше 0!",true);return}
-  norms[p]=v;
-  saveNorms();
-  document.getElementById("norm-product").value="";
-  document.getElementById("norm-value").value="";
+function dictToggle(key){dictOpen[key]=!dictOpen[key];renderDicts()}
+
+function groupsUnlocked(){return sessionStorage.getItem(GROUPS_UNLOCK_KEY)==="1"}
+function requestGroupPassword(cb){
+  pendingGroupCallback=cb;
+  document.getElementById("gpwd-input").value="";
+  document.getElementById("gpwd-modal").classList.add("open");
+  setTimeout(function(){document.getElementById("gpwd-input").focus()},100);
+}
+function closeGpwdModal(){document.getElementById("gpwd-modal").classList.remove("open");pendingGroupCallback=null}
+function checkGpwd(){
+  const val=document.getElementById("gpwd-input").value;
+  if(val===groupPwd){
+    sessionStorage.setItem(GROUPS_UNLOCK_KEY,"1");
+    closeGpwdModal();
+    renderDicts();
+    showToast("Правка разрешена до закрытия браузера");
+    if(pendingGroupCallback){const cb=pendingGroupCallback;pendingGroupCallback=null;cb()}
+  }else{
+    showToast("Неверный пароль!",true);
+    document.getElementById("gpwd-input").value="";
+    document.getElementById("gpwd-input").focus();
+  }
+}
+function groupUnlock(){
+  const inp=document.getElementById("group-pwd-input");
+  if(!inp)return;
+  if(inp.value===groupPwd){
+    sessionStorage.setItem(GROUPS_UNLOCK_KEY,"1");
+    renderDicts();
+    showToast("Группы и нормативы разблокированы");
+  }else{
+    showToast("Неверный пароль групп!",true);
+    inp.value="";inp.focus();
+  }
+}
+function groupLock(){
+  sessionStorage.removeItem(GROUPS_UNLOCK_KEY);
+  renderDicts();
+  showToast("Группы и правка журнала заблокированы");
+}
+async function changeGroupPwd(){
+  const n1=prompt("Новый пароль групп и правки (мин. 4 символа):");
+  if(n1===null)return;
+  if(n1.length<4){showToast("Минимум 4 символа!",true);return}
+  const n2=prompt("Повторите новый пароль:");
+  if(n2!==n1){showToast("Пароли не совпадают!",true);return}
+  groupPwd=n1;
+  try{await setDoc(doc(db,"settings","main"),{groupPwd:n1},{merge:true});showToast("Пароль групп и правки изменён")}
+  catch(e){showToast("Ошибка: "+e.message,true)}
+}
+function requireGroups(){
+  if(!groupsUnlocked()){showToast("Защищено паролем нормативов!",true);return false}
+  return true;
+}
+function groupOf(p){
+  if(!p)return null;
+  for(let i=0;i<groups.length;i++){
+    const g=groups[i];
+    if(g.items&&g.items.indexOf(p)!==-1)return g;
+  }
+  return null;
+}
+function rateFor(p){
+  const g=groupOf(p);
+  if(g&&g.rate)return g.rate;
+  return (p&&rates[p])?rates[p]:null;
+}
+function normFor(p){
+  if(p&&norms[p])return norms[p];
+  const g=groupOf(p);
+  if(g&&g.norm)return g.norm;
+  return null;
+}
+function groupCreate(){
+  if(!requireGroups())return;
+  const t=document.getElementById("group-title").value.trim();
+  const r=parseFloat(document.getElementById("group-rate").value);
+  const n=parseFloat(document.getElementById("group-norm").value);
+  if(!t){showToast("Введите название группы!",true);return}
+  if(!r||r<=0){showToast("Введите норматив м²/смену!",true);return}
+  groups.push({id:"g"+Date.now().toString(36),title:t,rate:r,norm:(n&&n>0)?n:null,items:[]});
+  saveGroups();
+  document.getElementById("group-title").value="";
+  document.getElementById("group-rate").value="";
+  document.getElementById("group-norm").value="";
   renderDicts();renderAll();renderActive();
-  showToast("Норматив установлен: "+p+" = "+v+"%");
+  showToast("Группа создана: "+t);
 }
-function normDel(encKey){
-  const k=decodeURIComponent(encKey);
-  if(!confirm("Удалить норматив для «"+k+"»?"))return;
-  delete norms[k];
-  saveNorms();renderDicts();renderAll();renderActive();
+function groupAddItem(gid){
+  if(!requireGroups())return;
+  const inp=document.getElementById("group-add-"+gid);
+  if(!inp)return;
+  const v=inp.value.trim();
+  if(!v){showToast("Выберите продукт!",true);return}
+  const g=groups.find(function(x){return x.id===gid});
+  if(!g)return;
+  if(g.items.indexOf(v)!==-1){showToast("Уже в этой группе!",true);return}
+  groups.forEach(function(x){const i=x.items.indexOf(v);if(i!==-1)x.items.splice(i,1)});
+  g.items.push(v);
+  saveGroups();renderDicts();renderAll();renderActive();
+  showToast("«"+v+"» → группа «"+g.title+"»");
 }
-function normFor(p){return (p&&norms[p])?norms[p]:null}
+function groupDelItem(gid,idx){
+  if(!requireGroups())return;
+  const g=groups.find(function(x){return x.id===gid});
+  if(!g)return;
+  g.items.splice(idx,1);
+  saveGroups();renderDicts();renderAll();renderActive();
+}
+function groupDel(gid){
+  if(!requireGroups())return;
+  const g=groups.find(function(x){return x.id===gid});
+  if(!g)return;
+  if(!confirm("Удалить группу «"+g.title+"»? Продукты останутся без нормативов."))return;
+  groups=groups.filter(function(x){return x.id!==gid});
+  saveGroups();renderDicts();renderAll();renderActive();
+}
+function groupEdit(gid){
+  if(!requireGroups())return;
+  const g=groups.find(function(x){return x.id===gid});
+  if(!g)return;
+  const r=prompt("Норматив группы, м²/смену:",g.rate);
+  if(r===null)return;
+  const rv=parseFloat(r);
+  if(!rv||rv<=0){showToast("Некорректный норматив!",true);return}
+  const n=prompt("Норма выхода группы, % (пусто = не задана):",g.norm||"");
+  let nv=null;
+  if(n!==null&&n.trim()!==""){nv=parseFloat(n);if(!nv||nv<=0)nv=null}
+  g.rate=rv;g.norm=nv;
+  saveGroups();renderDicts();renderAll();renderActive();
+  showToast("Группа обновлена");
+}
+async function saveShiftMinutes(){
+  if(!requireGroups())return;
+  const v=parseInt(document.getElementById("shift-min-input").value)||0;
+  if(v<60){showToast("Длительность смены минимум 60 мин!",true);return}
+  shiftMinutes=v;
+  try{await setDoc(doc(db,"settings","main"),{shiftMinutes:v},{merge:true});showToast("Длительность смены: "+v+" мин");renderAll();renderActive()}
+  catch(e){showToast("Ошибка: "+e.message,true)}
+}
+function posExpected(i){
+  const r=rateFor(i.product);
+  if(!r||!(i.timeMin>0))return null;
+  return r*(i.timeMin/shiftMinutes);
+}
 function renderDicts(){
+  const gate=document.getElementById("group-gate");
+  const body=document.getElementById("group-body");
+  if(groupsUnlocked()){
+    gate.innerHTML='<div class="dict-add"><button class="btn btn-ghost btn-sm" onclick="groupLock()">🔒 Заблокировать</button><button class="btn btn-ghost btn-sm" onclick="changeGroupPwd()">🔑 Сменить пароль</button></div>';
+    body.style.display="block";
+  }else{
+    gate.innerHTML='<div class="dict-add"><input type="password" id="group-pwd-input" placeholder="Пароль групп и нормативов" style="max-width:280px"><button class="btn btn-primary btn-sm" onclick="groupUnlock()">🔓 Разблокировать</button></div><p class="hint">Этим же паролем закрыты правка и удаление записей в журнале.</p>';
+    body.style.display="none";
+    const gi=document.getElementById("group-pwd-input");
+    if(gi)gi.addEventListener("keydown",function(e){if(e.key==="Enter")groupUnlock()});
+  }
   DICT_META.forEach(function(m){
-    const el=document.getElementById("dict-list-"+m[0]);
+    const key=m[0];
+    const el=document.getElementById("dict-list-"+key);
     if(!el)return;
-    el.innerHTML=dicts[m[0]].map(function(v,i){
-      return '<span class="chip">'+escHtml(v)+' <button class="ren" title="Переименовать" onclick="dictRename(\''+m[0]+'\','+i+')">✎</button><button class="del" title="Удалить" onclick="dictDel(\''+m[0]+'\','+i+')">✕</button></span>';
+    const count=dicts[key].length;
+    const open=!!dictOpen[key];
+    const rows=dicts[key].map(function(v,i){
+      return '<tr><td class="idx">'+(i+1)+'</td><td title="'+escAttr(v)+'">'+escHtml(v)+'</td><td class="act"><button class="icon-btn ren" title="Переименовать" onclick="dictRename(\''+key+'\','+i+')">✎</button><button class="icon-btn del" title="Удалить" onclick="dictDel(\''+key+'\','+i+')">✕</button></td></tr>';
     }).join("");
+    el.innerHTML='<div class="dict-toggle"><button class="btn btn-ghost btn-sm" onclick="dictToggle(\''+key+'\')">'+(open?" Скрыть":"▸ Показать")+' ('+count+')</button></div>'+
+      '<div style="display:'+(open?"block":"none")+'"><table class="dict-table"><thead><tr><th class="idx">№</th><th>'+m[1]+'</th><th class="act"></th></tr></thead><tbody>'+rows+'</tbody></table></div>';
   });
-  const nl=document.getElementById("norm-list");
-  if(nl){
-    const keys=Object.keys(norms).sort();
-    nl.innerHTML=keys.length?keys.map(function(k){
-      return '<span class="chip"><b>'+escHtml(k)+'</b> — '+norms[k]+'% <button class="del" title="Удалить" onclick="normDel(\''+encodeURIComponent(k)+'\')">✕</button></span>';
-    }).join(""):'<span class="hint">Нормативы ещё не заданы.</span>';
+  const gl=document.getElementById("group-list");
+  if(gl){
+    gl.innerHTML=groups.length?groups.map(function(g){
+      const chips=(g.items||[]).map(function(v,i){
+        return '<span class="g-chip">'+escHtml(v)+'<button title="Убрать из группы" onclick="groupDelItem(\''+g.id+'\','+i+')">✕</button></span>';
+      }).join("")||'<span class="hint">В группе пока нет продуктов.</span>';
+      return '<div class="group-card"><div class="g-head"><span class="g-title">🔗 '+escHtml(g.title)+'</span>'+
+        '<span class="g-nums">норматив: '+g.rate+' м²/смену'+(g.norm?(' · норма выхода: '+g.norm+'%'):'')+' · продуктов: '+(g.items||[]).length+
+        ' <button class="icon-btn ren" title="Изменить нормативы" onclick="groupEdit(\''+g.id+'\')">✎</button>'+
+        ' <button class="icon-btn del" title="Удалить группу" onclick="groupDel(\''+g.id+'\')">✕</button></span></div>'+
+        '<div class="group-chips">'+chips+'</div>'+
+        '<div class="dict-add" style="margin-bottom:0"><input type="text" id="group-add-'+g.id+'" list="semiproductsList" placeholder="Добавить продукт в группу…"><button class="btn btn-outline btn-sm" onclick="groupAddItem(\''+g.id+'\')">+ В группу</button></div></div>';
+    }).join(""):'<span class="hint">Группы не созданы. Создайте первую выше — например, объедините «Ромб дуб 190» и «Ромб орех 190».</span>';
   }
 }
 function refreshDictUI(){
@@ -607,7 +861,6 @@ function refreshDictUI(){
   if(act&&act.id==="panel-dicts")renderDicts();
 }
 
-// ═══════════════ ПРОСТОИ: НЕСКОЛЬКО ПРИЧИН ═══════════════
 function getDowntimeItems(rec){
   if(Array.isArray(rec.downtimeItems)&&rec.downtimeItems.length)return rec.downtimeItems;
   if((rec.downtime||0)>0)return[{reason:(rec.reason&&rec.reason!=="Нет")?rec.reason:"Другое",minutes:rec.downtime}];
@@ -630,23 +883,11 @@ function createDtRow(data){
     '<button class="remove-item" style="padding:10px 14px" onclick="removeDtRow(this)">✕</button>';
   return div;
 }
-function addDtRow(cid,data){
-  document.getElementById(cid).appendChild(createDtRow(data));
-  updateDtTotal(cid);
-}
-function removeDtRow(btn){
-  const row=btn.closest(".dt-row");
-  const wrap=row.parentElement;
-  row.remove();
-  updateDtTotal(wrap.id);
-}
-function recalcDtTotal(el){
-  const wrap=el.closest(".dt-wrap");
-  if(wrap)updateDtTotal(wrap.id);
-}
+function addDtRow(cid,data){document.getElementById(cid).appendChild(createDtRow(data));updateDtTotal(cid)}
+function removeDtRow(btn){const row=btn.closest(".dt-row");const wrap=row.parentElement;row.remove();updateDtTotal(wrap.id)}
+function recalcDtTotal(el){const wrap=el.closest(".dt-wrap");if(wrap)updateDtTotal(wrap.id)}
 function updateDtTotal(cid){
-  const rows=document.querySelectorAll("#"+cid+" .dt-row");
-  let sum=0;
+  const rows=document.querySelectorAll("#"+cid+" .dt-row");let sum=0;
   rows.forEach(function(r){sum+=parseInt(r.querySelector(".dt-minutes").value)||0});
   const lbl=document.getElementById(cid+"-total");
   if(lbl)lbl.textContent=sum>0?("Итого простой: "+sum+" мин"):"";
@@ -661,7 +902,6 @@ function collectDt(cid){
   return arr;
 }
 
-// ═══════════════ УМНЫЙ ПОДБОР ═══════════════
 const AC_LISTS={materials:function(){return dicts.materials},semiproducts:function(){return dicts.semiproducts}};
 let acState={input:null,idx:-1,el:null,listKey:null};
 let acHoverInput=false,acHoverList=false,acOpenTimer=null,acCloseTimer=null;
@@ -673,7 +913,7 @@ function scheduleAcClose(){
     if(!acHoverInput&&!acHoverList&&!focused)closeAc();
   },220);
 }
-function norm(s){return String(s==null?"":s).toLowerCase().replace(/×/g,"x").replace(/х/g,"x").replace(/Х/g,"x").replace(/,/g,".").replace(/ё/g,"е").replace(/\s+/g," ").trim()}
+function normStr(s){return String(s==null?"":s).toLowerCase().replace(/×/g,"x").replace(/х/g,"x").replace(/Х/g,"x").replace(/,/g,".").replace(/ё/g,"е").replace(/\s+/g," ").trim()}
 function ensureAcEl(){
   if(!acState.el){
     const d=document.createElement("div");d.className="ac-dropdown";document.body.appendChild(d);
@@ -687,9 +927,9 @@ function closeAc(){if(acState.el){acState.el.style.display="none";acState.idx=-1
 function paintAc(){const el=acState.el;if(!el)return;for(let i=0;i<el.children.length;i++){el.children[i].classList.toggle("sel",i===acState.idx)}if(acState.idx>=0&&el.children[acState.idx])el.children[acState.idx].scrollIntoView({block:"nearest"})}
 function pickAc(v){const input=acState.input;if(!input)return;input.value=v;input.title=v;closeAc()}
 function openAc(input,listKey){
-  const el=ensureAcEl();const q=norm(input.value);
+  const el=ensureAcEl();const q=normStr(input.value);
   const all=AC_LISTS[listKey]?AC_LISTS[listKey]():[];
-  let filtered=q?all.filter(function(v){return norm(v).indexOf(q)!==-1}):all.slice();
+  let filtered=q?all.filter(function(v){return normStr(v).indexOf(q)!==-1}):all.slice();
   if(filtered.length===0){closeAc();return}
   filtered=filtered.slice(0,60);el.innerHTML="";
   filtered.forEach(function(v){const d=document.createElement("div");d.className="ac-item";d.textContent=v;d.onmousedown=function(ev){ev.preventDefault();pickAc(v);input.focus()};el.appendChild(d)});
@@ -713,8 +953,8 @@ function attachAutocomplete(input,listKey){
     scheduleAcClose();
   });
   input.addEventListener("blur",function(){
-    const v=norm(input.value);
-    if(v){const all=AC_LISTS[listKey]?AC_LISTS[listKey]():[];for(let i=0;i<all.length;i++){if(norm(all[i])===v){input.value=all[i];break}}}
+    const v=normStr(input.value);
+    if(v){const all=AC_LISTS[listKey]?AC_LISTS[listKey]():[];for(let i=0;i<all.length;i++){if(normStr(all[i])===v){input.value=all[i];break}}}
     input.title=input.value;
     setTimeout(function(){if(!acHoverList&&!acHoverInput)closeAc()},150);
   });
@@ -730,7 +970,6 @@ document.addEventListener("click",function(e){if(acState.el&&!acState.el.contain
 window.addEventListener("scroll",function(e){if(acState.el&&acState.el.contains(e.target))return;closeAc()},true);
 window.addEventListener("resize",function(){closeAc()});
 
-// ═══════════════ ПАРОЛЬ ═══════════════
 function isAdminUnlocked(){return sessionStorage.getItem(UNLOCK_KEY)==="1"}
 function setAdminUnlocked(v){if(v)sessionStorage.setItem(UNLOCK_KEY,"1");else sessionStorage.removeItem(UNLOCK_KEY)}
 function requestPassword(cb){pendingUnlockCallback=cb;document.getElementById("password-input").value="";document.getElementById("password-modal").classList.add("open");setTimeout(function(){document.getElementById("password-input").focus()},100)}
@@ -755,11 +994,10 @@ async function changePassword(){
   if(n1.length<4){showToast("Новый пароль минимум 4 символа!",true);return}
   if(n1!==n2){showToast("Пароли не совпадают!",true);return}
   adminPwd=n1;
-  try{await setDoc(doc(db,"settings","main"),{pwd:n1});closeChpwdModal();showToast("Пароль изменён для всех компьютеров!")}
+  try{await setDoc(doc(db,"settings","main"),{pwd:n1},{merge:true});closeChpwdModal();showToast("Пароль вкладок изменён для всех!")}
   catch(e){showToast("Не удалось сохранить пароль!",true)}
 }
 
-// ═══════════════ ЛОКАЛЬНОЕ ═══════════════
 function loadRecent(){try{const r=localStorage.getItem(RECENT_KEY);if(r)recent=JSON.parse(r)}catch(e){recent={name:"",workCenter:"",items:[]}}}
 function saveRecent(){localStorage.setItem(RECENT_KEY,JSON.stringify(recent))}
 function loadSettings(){try{const r=localStorage.getItem(SETTINGS_KEY);if(r)settings=Object.assign(settings,JSON.parse(r))}catch(e){}}
@@ -767,11 +1005,13 @@ function saveSettings(){localStorage.setItem(SETTINGS_KEY,JSON.stringify(setting
 
 function pushHistory(){historyStack.push(JSON.stringify(records));if(historyStack.length>HISTORY_LIMIT)historyStack.shift();redoStack=[];updateUndoRedoButtons()}
 async function undo(){
+  if(!groupsUnlocked()){requestGroupPassword(function(){undo()});return}
   if(historyStack.length===0){showToast("Нечего отменять!",true);return}
   redoStack.push(JSON.stringify(records));records=JSON.parse(historyStack.pop());
   await syncAllToCloud();renderAll();updateUndoRedoButtons();showToast("Изменение отменено");
 }
 async function redo(){
+  if(!groupsUnlocked()){requestGroupPassword(function(){redo()});return}
   if(redoStack.length===0){showToast("Нечего повторять!",true);return}
   historyStack.push(JSON.stringify(records));records=JSON.parse(redoStack.pop());
   await syncAllToCloud();renderAll();updateUndoRedoButtons();showToast("Изменение повторено");
@@ -781,6 +1021,8 @@ function updateUndoRedoButtons(){const ub=document.getElementById("undo-btn"),rb
 function toSquareMeters(v,u,r){if(u==="шт")return v*(r||1);return v}
 function itemInputM2(i){return toSquareMeters(i.inputQty||0,i.inputUnit||"м²",i.inputRate)}
 function itemOutputM2(i){return toSquareMeters(i.qty||0,i.outputUnit||"м²",i.outputRate)}
+function itemProd(i){const t=i.timeMin||0;if(t<=0)return null;return itemOutputM2(i)/t}
+function itemFulfill(i){const sh=posExpected(i);if(sh===null||sh<=0)return null;return itemOutputM2(i)/sh*100}
 function calcYieldValueFromItem(i){const a=itemInputM2(i),b=itemOutputM2(i);if(a<=0)return"—";return((b/a)*100).toFixed(1)+"%"}
 function yieldClass(yStr,product){
   if(yStr==="—")return"";
@@ -788,10 +1030,13 @@ function yieldClass(yStr,product){
   if(n){return y>=n?"yield-high":y>=n-10?"yield-mid":"yield-low"}
   return y>=90?"yield-high":y>=70?"yield-mid":"yield-low";
 }
+function fulfillClass(f){
+  if(f===null)return"";
+  return f>=100?"yield-high":f>=90?"yield-mid":"yield-low";
+}
 function escHtml(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
 function escAttr(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
 
-// ═══════════════ СТАРТ ═══════════════
 async function initApp(){
   loadRecent();loadSettings();
   try{await seedSettings();await seedDicts();subscribeAll();setConnBadge(true);bootUI()}
@@ -803,6 +1048,7 @@ function bootUI(){
   ["log-filter","days-filter","months-filter","analytics-center"].forEach(function(id){const s=document.getElementById(id);WORK_CENTERS.forEach(function(w){const o=document.createElement("option");o.value=w;o.textContent=w;s.appendChild(o)})});
   refreshDictUI();
   document.getElementById("inp-date").value=new Date().toISOString().split("T")[0];
+  document.getElementById("shift-min-input").value=shiftMinutes;
   fillPlanMonthSelector();applySettings();applyRecentToForm();updateLockUI();renderAll();updateUndoRedoButtons();renderPlan();renderAnalytics();
 }
 function fillOperatorSelects(){
@@ -844,13 +1090,13 @@ function activateTab(name,btn){
 }
 function renderActive(){const a=document.querySelector(".panel.active");if(!a)return;if(a.id==="panel-analytics")renderAnalytics();if(a.id==="panel-plan")renderPlan();if(a.id==="panel-dicts")renderDicts()}
 
-function updateRecent(record){recent.name=record.name;recent.workCenter=record.workCenter;recent.items=record.items.map(function(i){return{inputMaterial:i.inputMaterial,inputChar:i.inputChar||"",product:i.product,productChar:i.productChar||"",inputUnit:i.inputUnit||"м²",outputUnit:i.outputUnit||"м²",inputRate:i.inputRate||1,outputRate:i.outputRate||1}});saveRecent()}
+function updateRecent(record){recent.name=record.name;recent.workCenter=record.workCenter;recent.items=record.items.map(function(i){return{inputMaterial:i.inputMaterial,inputChar:i.inputChar||"",product:i.product,productChar:i.productChar||"",inputUnit:i.inputUnit||"м²",outputUnit:i.outputUnit||"м²",inputRate:i.inputRate||1,outputRate:i.outputRate||1,timeMin:i.timeMin||0}});saveRecent()}
 function applyRecentToForm(){
   const hint=document.getElementById("recent-hint");let applied=false;
   if(recent.name){document.getElementById("inp-name").value=recent.name;applied=true}
   if(recent.workCenter){const sel=document.getElementById("inp-workcenter");let found=false;for(let i=0;i<sel.options.length;i++){if(sel.options[i].value===recent.workCenter){found=true;break}}if(found){sel.value=recent.workCenter;applied=true}}
   const c=document.getElementById("form-items");c.innerHTML="";
-  if(recent.items&&recent.items.length>0){recent.items.forEach(function(it){addItemToForm("form-items",{inputMaterial:it.inputMaterial||"",inputChar:it.inputChar||"",product:it.product||"",productChar:it.productChar||"",inputUnit:it.inputUnit||"м²",outputUnit:it.outputUnit||"м²",inputRate:it.inputRate||1,outputRate:it.outputRate||1})});applied=true}else{addItemToForm("form-items")}
+  if(recent.items&&recent.items.length>0){recent.items.forEach(function(it){addItemToForm("form-items",it)});applied=true}else{addItemToForm("form-items")}
   hint.style.display=applied?"inline-block":"none";
   refreshDictUI();
 }
@@ -878,7 +1124,9 @@ function createItemRow(data){
     '<div class="field"><label>Ед.</label><select class="item-output-unit" onchange="calcYield(this)">'+uo(outU)+'</select></div>'+
     '<div class="field"><label>Коэф. м²/шт</label><input type="number" class="item-output-rate" min="0" step="0.001" placeholder="1" value="'+outR+'" oninput="calcYield(this)"></div>'+
     '<div class="field"><label>Пересчёт в м²</label><div class="m2-hint item-output-m2-hint">'+outM2+'</div></div></div></div>'+
-    '<div class="item-footer"><div class="item-yield-box"><span class="item-yield-label">Выход:</span><span class="item-yield-value item-yield">'+yv+'</span><span class="item-norm-hint"></span></div>'+
+    '<div class="item-footer">'+
+    '<div class="field" style="max-width:150px"><label>Время (мин)</label><input type="number" class="item-time" min="0" step="1" placeholder="0" value="'+(data.timeMin||"")+'" oninput="calcYield(this)"></div>'+
+    '<div class="item-yield-box"><span class="item-yield-label">Выход:</span><span class="item-yield-value item-yield">'+yv+'</span><span class="item-norm-hint"></span><span class="item-prod-hint"></span></div>'+
     '<button class="remove-item" onclick="removeItemRow(this)">✕ Удалить позицию</button></div>';
   attachAutocomplete(div.querySelector(".item-input-material"),"materials");
   attachAutocomplete(div.querySelector(".item-product"),"semiproducts");
@@ -889,15 +1137,28 @@ function removeItemRow(btn){const row=btn.closest(".item-card");if(row.parentEle
 function calcYield(input){
   const row=input.closest(".item-card");
   const q=parseFloat(row.querySelector(".item-qty").value)||0;const iq=parseFloat(row.querySelector(".item-input-qty").value)||0;
+  const t=parseInt(row.querySelector(".item-time").value)||0;
   const oU=row.querySelector(".item-output-unit").value,iU=row.querySelector(".item-input-unit").value;
   const oR=parseFloat(row.querySelector(".item-output-rate").value)||1,iR=parseFloat(row.querySelector(".item-input-rate").value)||1;
   const yf=row.querySelector(".item-yield"),iH=row.querySelector(".item-input-m2-hint"),oH=row.querySelector(".item-output-m2-hint");
-  const nh=row.querySelector(".item-norm-hint");
+  const nh=row.querySelector(".item-norm-hint"),ph=row.querySelector(".item-prod-hint");
   const prod=row.querySelector(".item-product").value.trim();
+  const g=groupOf(prod);
   const n=normFor(prod);
-  if(nh)nh.textContent=n?("норматив: "+n+"%"):"";
+  const rt=rateFor(prod);
+  let hints=[];
+  if(g)hints.push("группа: "+g.title);
+  if(n)hints.push("норма выхода: "+n+"%");
+  if(rt)hints.push("норматив: "+rt+" м²/смену");
+  if(nh)nh.textContent=hints.join(" · ");
   const iM2=toSquareMeters(iq,iU,iR);iH.textContent=iq>0?(iU==="шт"?iq+" шт × "+iR+" = "+iM2.toFixed(2)+" м²":iq+" м²"):"";
   const oM2=toSquareMeters(q,oU,oR);oH.textContent=q>0?(oU==="шт"?q+" шт × "+oR+" = "+oM2.toFixed(2)+" м²":q+" м²"):"";
+  if(ph){
+    if(t>0){
+      const should=rt?rt*(t/shiftMinutes):null;
+      ph.textContent="· "+(oM2/t).toFixed(2)+" м²/мин"+(should?(" · должен "+should.toFixed(1)+" м²"):"");
+    }else ph.textContent="";
+  }
   if(q>0&&iq>0&&iM2>0){
     const p=(oM2/iM2)*100;yf.textContent=p.toFixed(1)+"%";
     if(n){yf.style.color=p>=n?"var(--ok)":p>=n-10?"var(--warn)":"var(--danger)"}
@@ -911,7 +1172,8 @@ function collectItems(cid){
     const iq=parseFloat(row.querySelector(".item-input-qty").value)||0;const iU=row.querySelector(".item-input-unit").value;const iR=parseFloat(row.querySelector(".item-input-rate").value)||1;
     const p=row.querySelector(".item-product").value.trim();const pc=row.querySelector(".item-product-char").value.trim();
     const q=parseFloat(row.querySelector(".item-qty").value)||0;const oU=row.querySelector(".item-output-unit").value;const oR=parseFloat(row.querySelector(".item-output-rate").value)||1;
-    if(p&&(q>0||iq>0))items.push({inputMaterial:im,inputChar:ic,inputQty:iq,inputUnit:iU,inputRate:iR,product:p,productChar:pc,qty:q,outputUnit:oU,outputRate:oR});
+    const t=parseInt(row.querySelector(".item-time").value)||0;
+    if(p&&(q>0||iq>0))items.push({inputMaterial:im,inputChar:ic,inputQty:iq,inputUnit:iU,inputRate:iR,product:p,productChar:pc,qty:q,outputUnit:oU,outputRate:oR,timeMin:t});
   });
   return items;
 }
@@ -935,6 +1197,7 @@ async function addRecord(){
   catch(e){showToast("Ошибка сохранения: "+e.message,true)}
 }
 async function openEditModal(id){
+  if(!groupsUnlocked()){requestGroupPassword(function(){openEditModal(id)});return}
   const rec=records.find(function(r){return r.id===id});if(!rec)return;
   editingId=id;
   document.getElementById("edit-date").value=rec.date;document.getElementById("edit-name").value=rec.name;
@@ -963,50 +1226,18 @@ async function saveEdit(){
 }
 document.getElementById("edit-modal").addEventListener("click",function(e){if(e.target===this)closeEditModal()});
 document.getElementById("password-modal").addEventListener("click",function(e){if(e.target===this)closePasswordModal()});
+document.getElementById("gpwd-modal").addEventListener("click",function(e){if(e.target===this)closeGpwdModal()});
 document.getElementById("chpwd-modal").addEventListener("click",function(e){if(e.target===this)closeChpwdModal()});
 
-async function startInlineEdit(el){
-  if(el.querySelector(".inline-input"))return;
-  const rid=el.dataset.recordId,iidx=parseInt(el.dataset.itemIdx);
-  const dtIdx=el.dataset.dtIdx!==undefined?parseInt(el.dataset.dtIdx):-1;
-  const field=el.dataset.field,type=el.dataset.type,cur=el.dataset.value;
-  let input;
-  if(type==="select-workcenter")input=mkSelect(WORK_CENTERS,cur);
-  else if(type==="select-unit")input=mkSelect(UNITS,cur);
-  else if(type==="text-reason"){input=document.createElement("input");input.type="text";input.setAttribute("list","reasonsList");input.setAttribute("autocomplete","off");input.value=cur}
-  else if(type==="text-name"){input=document.createElement("input");input.type="text";input.setAttribute("list","operatorsList");input.setAttribute("autocomplete","off");input.value=cur}
-  else if(type==="text-product"){input=document.createElement("input");input.type="text";input.setAttribute("list","semiproductsList");input.setAttribute("autocomplete","off");input.value=cur}
-  else if(type==="text-material"){input=document.createElement("input");input.type="text";input.setAttribute("list","inputMaterialsList");input.setAttribute("autocomplete","off");input.value=cur}
-  else if(type==="date"){input=document.createElement("input");input.type="date";input.value=cur}
-  else if(type==="number"){input=document.createElement("input");input.type="number";input.step="0.01";input.min="0";input.value=cur}
-  else{input=document.createElement("input");input.type="text";input.value=cur}
-  input.className="inline-input";el.textContent="";el.appendChild(input);input.focus();if(input.select)input.select();
-  async function save(){
-    let v=input.value;if(type==="number")v=parseFloat(v)||0;else v=v.trim();
-    pushHistory();
-    const rec=updateField(rid,iidx,field,v,dtIdx);
-    if(rec){try{await setDoc(doc(db,"records",rid),Object.assign({},rec,{updatedAt:Date.now()}));fillOperatorSelects();applySettings();renderAll();showToast("Сохранено")}catch(e){showToast("Ошибка: "+e.message,true);renderAll()}}
-  }
-  function cancel(){input.removeEventListener("blur",save);renderAll()}
-  input.addEventListener("blur",save);
-  input.addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();input.blur()}if(e.key==="Escape"){e.preventDefault();cancel()}});
-}
-function mkSelect(opts,cur){const s=document.createElement("select");opts.forEach(function(o){const op=document.createElement("option");op.value=o;op.textContent=o;if(o===cur)op.selected=true;s.appendChild(op)});return s}
-function updateField(rid,iidx,field,val,dtIdx){
-  const rec=records.find(function(r){return r.id===rid});if(!rec)return null;
-  if(field==="dtReason"){const items=ensureDtItems(rec);if(items[dtIdx])items[dtIdx].reason=val;normalizeDt(rec)}
-  else if(field==="dtMinutes"){const items=ensureDtItems(rec);if(items[dtIdx])items[dtIdx].minutes=val;normalizeDt(rec)}
-  else if(iidx===-1){rec[field]=val}
-  else{if(rec.items[iidx])rec.items[iidx][field]=val}
-  return rec;
-}
 async function deleteRecord(id){
+  if(!groupsUnlocked()){requestGroupPassword(function(){deleteRecord(id)});return}
   if(!confirm("Удалить всю запись (все позиции)?"))return;
   pushHistory();
   try{await deleteDoc(doc(db,"records",id));fillOperatorSelects();applySettings();renderAll();showToast("Удалено")}
   catch(e){showToast("Ошибка: "+e.message,true)}
 }
 async function clearAll(){
+  if(!groupsUnlocked()){requestGroupPassword(function(){clearAll()});return}
   if(!confirm("Удалить ВСЕ данные?"))return;
   if(!confirm("Точно? Всё будет стёрто у всех пользователей."))return;
   pushHistory();
@@ -1033,42 +1264,82 @@ function getFilteredLog(){const f=document.getElementById("log-filter").value;co
 function getFiltered(fid){const f=document.getElementById(fid).value;if(f==="all")return records;return records.filter(function(r){return r.workCenter===f})}
 
 function renderLog(){
-  const tbody=document.getElementById("log-body"),empty=document.getElementById("log-empty");const filtered=getFilteredLog();
-  if(filtered.length===0){tbody.innerHTML="";empty.style.display="block";return}empty.style.display="none";
-  const sorted=filtered.slice().sort(function(a,b){return b.date.localeCompare(a.date)||(b.createdAt||0)-(a.createdAt||0)});let html="";
+  const tbody=document.getElementById("log-body"),empty=document.getElementById("log-empty");
+  const tfoot=document.getElementById("log-foot");
+  const filtered=getFilteredLog();
+  if(filtered.length===0){tbody.innerHTML="";tfoot.innerHTML="";empty.style.display="block";return}
+  empty.style.display="none";
+
+  let sumIq=0,sumQ=0,sumT=0,sumDt=0,sumExp=0,sumFactExp=0;
+  filtered.forEach(function(r){
+    sumDt+=r.downtime||0;
+    r.items.forEach(function(i){
+      const om=itemOutputM2(i);
+      sumQ+=om;sumIq+=itemInputM2(i);sumT+=i.timeMin||0;
+      const sh=posExpected(i);
+      if(sh!==null){sumExp+=sh;sumFactExp+=om}
+    });
+  });
+  const totalFulfill=sumExp>0?(sumFactExp/sumExp*100):null;
+  const totalYield=sumIq>0?(sumQ/sumIq*100):null;
+  tfoot.innerHTML='<tr><td colspan="3"><b>ИТОГО ЗА ПЕРИОД: '+filtered.length+' зап.</b></td><td class="num">'+sumIq.toFixed(1)+' м²</td><td></td><td class="num">'+sumQ.toFixed(1)+' м²</td><td class="num">'+sumT+' мин</td><td class="num '+fulfillClass(totalFulfill)+'">'+(totalFulfill!==null?totalFulfill.toFixed(0)+'%':'—')+'</td><td class="num">'+(totalYield!==null?totalYield.toFixed(1)+'%':'—')+'</td><td class="num">'+sumDt+' мин</td><td></td></tr>';
+
+  const sorted=filtered.slice().sort(function(a,b){return b.date.localeCompare(a.date)||(b.createdAt||0)-(a.createdAt||0)});
+  let html="";let gi=0;
   sorted.forEach(function(rec){
+    const n=rec.items.length;
+    const alt=(gi%2===1)?" grp-alt":"";
+    gi++;
+    const dp=String(rec.date).split("-");
+    const dateBig=dp[2]+"."+dp[1];
+    const dateYear=dp[0];
     const dtItems=getDowntimeItems(rec);
     let dtCell;
-    if(dtItems.length===0){dtCell='<span class="no-downtime">0</span>'}
-    else{
-      dtCell='<b class="downtime">'+rec.downtime+'</b> мин';
-      dtItems.forEach(function(it,di){
-        dtCell+='<span class="dt-line"><span class="editable" onclick="startInlineEdit(this)" data-record-id="'+rec.id+'" data-item-idx="-1" data-dt-idx="'+di+'" data-field="dtReason" data-type="text-reason" data-value="'+escAttr(it.reason)+'">'+escHtml(it.reason)+'</span> · <span class="editable" onclick="startInlineEdit(this)" data-record-id="'+rec.id+'" data-item-idx="-1" data-dt-idx="'+di+'" data-field="dtMinutes" data-type="number" data-value="'+it.minutes+'">'+it.minutes+'</span> мин</span>';
+    if(dtItems.length===0){
+      dtCell='<span class="cell-num no-downtime">0</span><span class="cell-sub">мин</span>';
+    }else{
+      dtCell='<span class="cell-big downtime">'+rec.downtime+'</span><span class="cell-sub">мин</span>';
+      dtItems.forEach(function(it){
+        dtCell+='<span class="cell-sub">'+escHtml(it.reason)+' · '+it.minutes+' мин</span>';
       });
     }
+    const actionsCell='<div class="row-actions"><button class="btn btn-outline btn-xs" onclick="openEditModal(\''+rec.id+'\')" title="Правка всей записи (под паролем)">✏️</button><button class="btn btn-danger btn-xs" onclick="deleteRecord(\''+rec.id+'\')" title="Удалить запись (под паролем)">🗑</button></div>';
     rec.items.forEach(function(item,idx){
-      const rowClass=idx===0?"group-start":"";const y=calcYieldValueFromItem(item);
+      const first=idx===0;
+      const y=calcYieldValueFromItem(item);
       const yClass=yieldClass(y,item.product);
-      const n=normFor(item.product);
+      const nn=normFor(item.product);
+      const gg=groupOf(item.product);
       const inV=item.inputQty||0,inU=item.inputUnit||"м²",inR=item.inputRate||1,inM2=itemInputM2(item);
       const outV=item.qty||0,outU=item.outputUnit||"м²",outR=item.outputRate||1,outM2=itemOutputM2(item);
-      let inSub="",outSub="";
-      if(item.inputChar)inSub+='<span class="editable char-sub" onclick="startInlineEdit(this)" data-record-id="'+rec.id+'" data-item-idx="'+idx+'" data-field="inputChar" data-type="text" data-value="'+escAttr(item.inputChar)+'">'+escHtml(item.inputChar)+'</span>';
-      if(item.productChar)outSub+='<span class="editable char-sub" onclick="startInlineEdit(this)" data-record-id="'+rec.id+'" data-item-idx="'+idx+'" data-field="productChar" data-type="text" data-value="'+escAttr(item.productChar)+'">'+escHtml(item.productChar)+'</span>';
-      if(inU==="шт")inSub+='<span class="m2-sub">= '+inM2.toFixed(2)+' м²</span><span class="rate-sub">коэф: <span class="editable" onclick="startInlineEdit(this)" data-record-id="'+rec.id+'" data-item-idx="'+idx+'" data-field="inputRate" data-type="number" data-value="'+inR+'">'+inR+'</span></span>';
-      if(outU==="шт")outSub+='<span class="m2-sub">= '+outM2.toFixed(2)+' м²</span><span class="rate-sub">коэф: <span class="editable" onclick="startInlineEdit(this)" data-record-id="'+rec.id+'" data-item-idx="'+idx+'" data-field="outputRate" data-type="number" data-value="'+outR+'">'+outR+'</span></span>';
-      html+='<tr class="'+rowClass+'">'+
-        '<td class="col-date"><span class="editable" onclick="startInlineEdit(this)" data-record-id="'+rec.id+'" data-item-idx="-1" data-field="date" data-type="date" data-value="'+rec.date+'">'+formatDate(rec.date)+'</span></td>'+
-        '<td class="col-name"><span class="editable" onclick="startInlineEdit(this)" data-record-id="'+rec.id+'" data-item-idx="-1" data-field="name" data-type="text-name" data-value="'+escAttr(rec.name)+'">'+escHtml(rec.name)+'</span></td>'+
-        '<td class="col-center"><span class="editable" onclick="startInlineEdit(this)" data-record-id="'+rec.id+'" data-item-idx="-1" data-field="workCenter" data-type="select-workcenter" data-value="'+escAttr(rec.workCenter)+'">'+escHtml(rec.workCenter)+'</span></td>'+
-        '<td><span class="editable" onclick="startInlineEdit(this)" data-record-id="'+rec.id+'" data-item-idx="'+idx+'" data-field="inputMaterial" data-type="text-material" data-value="'+escAttr(item.inputMaterial||"")+'" title="'+escAttr(item.inputMaterial||"")+'">'+escHtml(item.inputMaterial||"—")+'</span>'+inSub+'</td>'+
-        '<td class="num"><span class="editable" onclick="startInlineEdit(this)" data-record-id="'+rec.id+'" data-item-idx="'+idx+'" data-field="inputQty" data-type="number" data-value="'+inV+'">'+inV+'</span> <span class="editable" onclick="startInlineEdit(this)" data-record-id="'+rec.id+'" data-item-idx="'+idx+'" data-field="inputUnit" data-type="select-unit" data-value="'+inU+'">'+inU+'</span></td>'+
-        '<td><span class="editable" onclick="startInlineEdit(this)" data-record-id="'+rec.id+'" data-item-idx="'+idx+'" data-field="product" data-type="text-product" data-value="'+escAttr(item.product)+'" title="'+escAttr(item.product)+'">'+escHtml(item.product)+'</span>'+outSub+'</td>'+
-        '<td class="num"><span class="editable" onclick="startInlineEdit(this)" data-record-id="'+rec.id+'" data-item-idx="'+idx+'" data-field="qty" data-type="number" data-value="'+outV+'">'+outV+'</span> <span class="editable" onclick="startInlineEdit(this)" data-record-id="'+rec.id+'" data-item-idx="'+idx+'" data-field="outputUnit" data-type="select-unit" data-value="'+outU+'">'+outU+'</span></td>'+
-        '<td class="num '+yClass+'" title="'+(n?("норматив "+n+"%"):"")+'">'+y+(n?(' <span style="font-size:10px;color:var(--muted)">/'+n+'</span>'):'')+'</td>'+
-        '<td class="num">'+dtCell+'</td>'+
-        '<td class="col-actions"><button class="btn btn-outline btn-xs" onclick="openEditModal(\''+rec.id+'\')" title="Правка всей записи">✏️</button> <button class="btn btn-danger btn-xs" onclick="deleteRecord(\''+rec.id+'\')" title="Удалить">🗑</button></td>'+
-      '</tr>';
+      const t=item.timeMin||0;
+      const pr=itemProd(item);
+      const ful=itemFulfill(item);
+      const fCls=fulfillClass(ful);
+      const should=posExpected(item);
+      html+='<tr class="'+(first?"group-start":"")+alt+'">';
+      if(first){
+        html+='<td rowspan="'+n+'" class="col-date"><span class="cell-big">'+dateBig+'</span><span class="cell-sub">'+dateYear+'</span></td>'+
+        '<td rowspan="'+n+'"><span class="cell-main">'+escHtml(rec.name)+'</span><span class="cell-sub accent">'+escHtml(rec.workCenter)+'</span></td>';
+      }
+      html+='<td><span class="cell-main">'+escHtml(item.inputMaterial||"—")+'</span>'+
+        (item.inputChar?'<span class="cell-sub">'+escHtml(item.inputChar)+'</span>':'')+'</td>';
+      html+='<td class="num"><span class="cell-big">'+inM2.toFixed(1)+'</span><span class="cell-sub">'+inV+' '+inU+(inU==="шт"?' · коэф '+inR:'')+'</span></td>';
+      html+='<td><span class="cell-main">'+escHtml(item.product)+'</span>'+
+        (gg?'<span class="cell-sub accent">группа: '+escHtml(gg.title)+'</span>':'')+
+        (item.productChar?'<span class="cell-sub">'+escHtml(item.productChar)+'</span>':'')+'</td>';
+      html+='<td class="num"><span class="cell-big">'+outM2.toFixed(1)+'</span><span class="cell-sub">'+outV+' '+outU+(outU==="шт"?' · коэф '+outR:'')+'</span></td>';
+      html+='<td class="num"><span class="cell-num">'+t+'</span><span class="cell-sub">мин</span>'+
+        (pr!==null?'<span class="cell-sub accent">'+pr.toFixed(2)+' м²/мин</span>':'')+'</td>';
+      html+='<td class="num"><span class="cell-big '+fCls+'" title="'+(should?("должен: "+should.toFixed(1)+" м² · сделал: "+outM2.toFixed(1)+" м²"):"нет норматива")+'">'+(ful!==null?ful.toFixed(0)+"%":"—")+'</span>'+
+        (should?'<span class="cell-sub">должен '+should.toFixed(1)+' м²</span>':'')+'</td>';
+      html+='<td class="num"><span class="cell-num '+yClass+'">'+y+'</span>'+
+        (nn?'<span class="cell-sub">норма '+nn+'%</span>':'')+'</td>';
+      if(first){
+        html+='<td rowspan="'+n+'" class="num">'+dtCell+'</td>'+
+        '<td rowspan="'+n+'">'+actionsCell+'</td>';
+      }
+      html+='</tr>';
     });
   });
   tbody.innerHTML=html;
@@ -1099,6 +1370,15 @@ function renderMonths(){
   tb.innerHTML=keys.map(function(k){const s=byM[k],y=s.iq>0?((s.qty/s.iq)*100).toFixed(1)+"%":"—",dc=s.dt>0?"downtime":"no-downtime";return '<tr><td>'+MONTH_NAMES[s.month-1]+' '+s.year+'</td><td class="num">'+s.count+'</td><td class="num">'+s.iq.toFixed(1)+'</td><td class="num">'+s.qty.toFixed(1)+'</td><td class="num">'+y+'</td><td class="num '+dc+'">'+s.dt+'</td><td class="num">'+s.dtc+'</td></tr>'}).join("");
 }
 
+function groupKey(p){const g=groupOf(p);return g?("g:"+g.id):p}
+function groupLabel(key){
+  if(key.indexOf("g:")===0){
+    const g=groups.find(function(x){return x.id===key.slice(2)});
+    if(g)return g.title+" ⇄ "+(g.items||[]).length;
+  }
+  return key;
+}
+
 function renderAnalytics(){
   fillAnalyticsMonthSelector();fillOperatorSelects();applySettings();
   const monthKey=document.getElementById("analytics-month").value;const cf=document.getElementById("analytics-center").value;const of=document.getElementById("analytics-operator").value;
@@ -1115,12 +1395,27 @@ function renderAnalytics(){
   const reasons=Object.keys(byReason).sort(function(a,b){return byReason[b].time-byReason[a].time});
   const topReason=reasons.length>0?reasons[0]:"—";const maxTime=reasons.length>0?byReason[reasons[0]].time:0;
   document.getElementById("analytics-summary-cards").innerHTML='<div class="stat-card cyan"><div class="value">'+totalCases+'</div><div class="label">Случаев простоя</div></div><div class="stat-card warn"><div class="value">'+totalDowntime+'</div><div class="label">Минут потеряно</div></div><div class="stat-card warn"><div class="value">'+hours+'ч '+mins+'м</div><div class="label">В часах</div></div><div class="stat-card"><div class="value">'+avg.toFixed(0)+'</div><div class="label">Ср. простой мин</div></div><div class="stat-card ok"><div class="value" style="font-size:14px;line-height:1.3">'+escHtml(topReason)+'</div><div class="label">Топ причина</div></div>';
+
+  const byOp={};
+  filtered.forEach(function(r){
+    if(!byOp[r.name])byOp[r.name]={qty:0,iq:0,t:0,exp:0,hasExp:false,days:{},dt:0,wfSum:0,wfW:0};
+    byOp[r.name].days[r.date]=1;
+    byOp[r.name].dt+=(r.downtime||0);
+    r.items.forEach(function(i){
+      const om=itemOutputM2(i);
+      byOp[r.name].qty+=om;byOp[r.name].iq+=itemInputM2(i);byOp[r.name].t+=i.timeMin||0;
+      const pe=posExpected(i);
+      if(pe!==null){byOp[r.name].exp+=pe;byOp[r.name].hasExp=true}
+      const fu=itemFulfill(i);
+      if(fu!==null){byOp[r.name].wfSum+=fu*om;byOp[r.name].wfW+=om}
+    });
+  });
+  const opKeys=Object.keys(byOp).sort(function(a,b){return byOp[b].qty-byOp[a].qty});
+
   const rc=document.getElementById("reasons-container"),re=document.getElementById("reasons-empty");
   if(reasons.length===0){rc.innerHTML="";re.style.display="block"}
   else{re.style.display="none";rc.innerHTML=reasons.map(function(reason,idx){const r=byReason[reason],pct=maxTime>0?(r.time/maxTime)*100:0;const share=totalDowntime>0?((r.time/totalDowntime)*100).toFixed(1):"0";const av=r.count>0?(r.time/r.count).toFixed(0):0;const cls=idx===0?"top":idx===1?"warn":"";const h=Math.floor(r.time/60),m=r.time%60;return '<div class="reason-row"><div class="reason-head"><span class="reason-name"><span class="reason-rank '+(idx===0?"top":"")+'">'+(idx+1)+'</span>'+escHtml(reason)+'</span><span class="reason-nums">'+r.count+' случ. · <b>'+r.time+' мин</b> ('+h+'ч '+m+'м) · '+av+' мин/случай · '+share+'% потерь</span></div><div class="bar-track"><div class="bar-fill '+cls+'" style="width:'+Math.max(pct,8)+'%">'+r.time+' мин</div></div></div>'}).join("")}
   const oc=document.getElementById("operators-chart"),oe=document.getElementById("operators-chart-empty");
-  const byOp={};filtered.forEach(function(r){if(!byOp[r.name])byOp[r.name]={qty:0,iq:0};r.items.forEach(function(i){byOp[r.name].qty+=itemOutputM2(i);byOp[r.name].iq+=itemInputM2(i)})});
-  const opKeys=Object.keys(byOp).sort(function(a,b){return byOp[b].qty-byOp[a].qty});
   if(opKeys.length===0){oc.innerHTML="";oe.style.display="block"}
   else{oe.style.display="none";const maxQty=byOp[opKeys[0]].qty||1;oc.innerHTML=opKeys.map(function(op,idx){const o=byOp[op],pct=(o.qty/maxQty)*100;const y=o.iq>0?((o.qty/o.iq)*100).toFixed(1):"—";return '<div class="reason-row"><div class="reason-head"><span class="reason-name"><span class="reason-rank '+(idx===0?"top":"")+'">'+(idx+1)+'</span>'+escHtml(op)+'</span><span class="reason-nums">'+o.qty.toFixed(1)+' м² · выход '+y+'%</span></div><div class="bar-track"><div class="bar-fill cyan" style="width:'+Math.max(pct,8)+'%">'+o.qty.toFixed(1)+' м²</div></div></div>'}).join("")}
   const mb=document.getElementById("materials-body"),me=document.getElementById("materials-empty");
@@ -1129,16 +1424,56 @@ function renderAnalytics(){
   if(matKeys.length===0){mb.innerHTML="";me.style.display="block"}
   else{me.style.display="none";mb.innerHTML=matKeys.map(function(m){const x=byMat[m],y=x.a>0?((x.b/x.a)*100).toFixed(1)+"%":"—";return '<tr><td><b>'+escHtml(m)+'</b></td><td class="num">'+x.count+'</td><td class="num">'+x.a.toFixed(1)+'</td><td class="num">'+x.b.toFixed(1)+'</td><td class="num">'+y+'</td></tr>'}).join("")}
   const pb=document.getElementById("products-body"),pe=document.getElementById("products-empty");
-  const byProd={};filtered.forEach(function(r){r.items.forEach(function(i){const pr=i.product||"Без названия";if(!byProd[pr])byProd[pr]={count:0,a:0,b:0};byProd[pr].count++;byProd[pr].a+=itemInputM2(i);byProd[pr].b+=itemOutputM2(i)})});
+  const byProd={};
+  filtered.forEach(function(r){r.items.forEach(function(i){
+    const key=groupKey(i.product);
+    if(!byProd[key])byProd[key]={count:0,a:0,b:0,t:0,days:{}};
+    byProd[key].count++;byProd[key].a+=itemInputM2(i);byProd[key].b+=itemOutputM2(i);byProd[key].t+=i.timeMin||0;byProd[key].days[r.date]=1;
+  })});
   const prodKeys=Object.keys(byProd).sort(function(a,b){return byProd[b].b-byProd[a].b});
   if(prodKeys.length===0){pb.innerHTML="";pe.style.display="block"}
-  else{pe.style.display="none";pb.innerHTML=prodKeys.map(function(pr){const x=byProd[pr];const y=x.a>0?((x.b/x.a)*100):null;const yStr=y!==null?y.toFixed(1)+"%":"—";const n=normFor(pr);const dev=(n&&y!==null)?(y-n):null;let devStr="—",devCls="";if(dev!==null){devStr=(dev>=0?"+":"")+dev.toFixed(1);devCls=dev>=0?"yield-high":dev>=-10?"yield-mid":"yield-low"}return '<tr><td><b>'+escHtml(pr)+'</b></td><td class="num">'+x.count+'</td><td class="num">'+x.b.toFixed(1)+'</td><td class="num">'+x.a.toFixed(1)+'</td><td class="num '+yieldClass(yStr,pr)+'">'+yStr+'</td><td class="num">'+(n?n+"%":"—")+'</td><td class="num '+devCls+'">'+devStr+'</td></tr>'}).join("")}
+  else{pe.style.display="none";pb.innerHTML=prodKeys.map(function(key){
+    const x=byProd[key];
+    const isG=key.indexOf("g:")===0;
+    const g=isG?groups.find(function(gr){return gr.id===key.slice(2)}):null;
+    const label=groupLabel(key);
+    const y=x.a>0?((x.b/x.a)*100):null;const yStr=y!==null?y.toFixed(1)+"%":"—";
+    const n=g&&g.norm?g.norm:null;
+    const dev=(n&&y!==null)?(y-n):null;
+    let devStr="—",devCls="";if(dev!==null){devStr=(dev>=0?"+":"")+dev.toFixed(1);devCls=dev>=0?"yield-high":dev>=-10?"yield-mid":"yield-low"}
+    const shifts=Object.keys(x.days).length;
+    const rate=g&&g.rate?g.rate:null;
+    const factPerShift=shifts>0?(x.b/shifts):null;
+    const expProd=rate?rate*shifts:null;
+    const fulfill=expProd?(x.b/expProd*100):null;
+    const prod=x.t>0?(x.b/x.t).toFixed(2):"—";
+    const fCls=fulfill!==null?(fulfill>=100?"yield-high":fulfill>=90?"yield-mid":"yield-low"):"";
+    return '<tr><td><b>'+escHtml(label)+'</b>'+(isG?' <span style="font-size:10px;color:var(--muted)">группа</span>':'')+'</td><td class="num">'+x.count+'</td><td class="num">'+x.b.toFixed(1)+'</td><td class="num">'+shifts+'</td><td class="num">'+(factPerShift!==null?factPerShift.toFixed(1):"—")+'</td><td class="num">'+(rate?rate:"—")+'</td><td class="num '+fCls+'">'+(fulfill!==null?fulfill.toFixed(1)+"%":"—")+'</td><td class="num">'+x.t+'</td><td class="num">'+prod+'</td><td class="num '+yieldClass(yStr,isG?null:key)+'">'+yStr+'</td><td class="num">'+(n?n+"%":"—")+'</td><td class="num '+devCls+'">'+devStr+'</td></tr>';
+  }).join("")}
   const db2=document.getElementById("downtime-details-body"),de=document.getElementById("details-empty");
   if(dtAll.length===0){db2.innerHTML="";de.style.display="block"}
   else{de.style.display="none";db2.innerHTML=dtAll.slice().sort(function(a,b){return b.rec.date.localeCompare(a.rec.date)}).map(function(x){return '<tr><td>'+formatDate(x.rec.date)+'</td><td>'+escHtml(x.rec.workCenter)+'</td><td>'+escHtml(x.rec.name)+'</td><td>'+escHtml(x.reason)+'</td><td class="num downtime">'+x.minutes+'</td></tr>'}).join("")}
   const ob=document.getElementById("operators-body"),oee=document.getElementById("operators-empty");
   if(filtered.length===0){ob.innerHTML="";oee.style.display="block"}
-  else{oee.style.display="none";ob.innerHTML=opKeys.map(function(op){const o=byOp[op];const cnt=filtered.filter(function(r){return r.name===op}).length;const dt=filtered.filter(function(r){return r.name===op}).reduce(function(s,r){return s+(r.downtime||0)},0);const y=o.iq>0?((o.qty/o.iq)*100).toFixed(1):"—";return '<tr><td><b>'+escHtml(op)+'</b></td><td class="num">'+cnt+'</td><td class="num">'+o.qty.toFixed(1)+'</td><td class="num">'+o.iq.toFixed(1)+'</td><td class="num">'+(y!=="—"?y+"%":"—")+'</td><td class="num '+(dt>0?"downtime":"no-downtime")+'">'+dt+'</td></tr>'}).join("")}
+  else{
+    oee.style.display="none";
+    ob.innerHTML=opKeys.map(function(op){
+      const o=byOp[op];
+      const days=Object.keys(o.days).length;
+      const y=o.iq>0?((o.qty/o.iq)*100).toFixed(1):"—";
+      const prodRate=o.t>0?(o.qty/o.t).toFixed(2):"—";
+      const task=o.hasExp?o.exp:null;
+      const pct=(task!==null&&task>0)?(o.qty/task)*100:null;
+      const perShift=days>0?(o.qty/days):null;
+      const kiv=o.t>0?((o.t-o.dt)/o.t*100):null;
+      const avgFulfill=o.wfW>0?(o.wfSum/o.wfW):null;
+      const ok=pct!==null&&pct>=100;const near=pct!==null&&pct>=90&&!ok;
+      const cls=pct===null?"":(ok?"yield-high":near?"yield-mid":"yield-low");
+      const kivCls=kiv===null?"":(kiv>=90?"yield-high":kiv>=70?"yield-mid":"yield-low");
+      const avgCls=avgFulfill===null?"":(avgFulfill>=100?"yield-high":avgFulfill>=90?"yield-mid":"yield-low");
+      return '<tr><td><b>'+escHtml(op)+'</b></td><td class="num">'+days+'</td><td class="num">'+o.qty.toFixed(1)+'</td><td class="num">'+(task!==null?task.toFixed(1):"—")+'</td><td class="num '+cls+'">'+(pct!==null?pct.toFixed(1)+"%":"—")+'</td><td class="num">'+(perShift!==null?perShift.toFixed(1):"—")+'</td><td class="num">'+prodRate+'</td><td class="num">'+o.iq.toFixed(1)+'</td><td class="num">'+(y==="—"?"—":y+"%")+'</td><td class="num">'+o.t+'</td><td class="num '+(o.dt>0?"downtime":"no-downtime")+'">'+o.dt+'</td><td class="num '+kivCls+'">'+(kiv!==null?kiv.toFixed(0)+"%":"—")+'</td><td class="num '+avgCls+'">'+(avgFulfill!==null?avgFulfill.toFixed(0)+"%":"—")+'</td></tr>';
+    }).join("");
+  }
 }
 
 async function savePlan(){
@@ -1193,16 +1528,16 @@ function renderCenterBars(mr,plan){
 
 function exportCSV(){
   if(records.length===0){showToast("Нет данных!",true);return}
-  const BOM="\uFEFF";let csv=BOM+"Дата;Фамилия;РЦ;Входящий материал;Хар-ка материала;Переработано;Ед.вх.;Коэф.вх.;Переработано (м²);Полуфабрикат;Хар-ка полуфабриката;Готово;Ед.вых.;Коэф.вых.;Готово (м²);Выход %;Норматив %;Простой (мин);Причины простоя\n";
-  records.forEach(function(r){r.items.forEach(function(i){const n=normFor(i.product);csv+=formatDate(r.date)+";"+r.name+";"+r.workCenter+";"+(i.inputMaterial||"—")+";"+(i.inputChar||"")+";"+(i.inputQty||0)+";"+(i.inputUnit||"м²")+";"+(i.inputRate||1)+";"+itemInputM2(i).toFixed(2)+";"+i.product+";"+(i.productChar||"")+";"+(i.qty||0)+";"+(i.outputUnit||"м²")+";"+(i.outputRate||1)+";"+itemOutputM2(i).toFixed(2)+";"+calcYieldValueFromItem(i)+";"+(n?n:"")+";"+(r.downtime||0)+";"+(r.reason||"Нет")+"\n"})});
+  const BOM="\uFEFF";let csv=BOM+"Дата;Фамилия;РЦ;Входящий материал;Хар-ка материала;Переработано;Ед.вх.;Коэф.вх.;Переработано (м²);Полуфабрикат;Группа;Хар-ка полуфабриката;Готово;Ед.вых.;Коэф.вых.;Готово (м²);Время (мин);м²/мин;Выполнение норматива %;Выход %;Норма выхода %;Норматив м²/смену;Простой (мин);Причины простоя\n";
+  records.forEach(function(r){r.items.forEach(function(i){const n=normFor(i.product);const rt=rateFor(i.product);const pr=itemProd(i);const fu=itemFulfill(i);const g=groupOf(i.product);csv+=formatDate(r.date)+";"+r.name+";"+r.workCenter+";"+(i.inputMaterial||"—")+";"+(i.inputChar||"")+";"+(i.inputQty||0)+";"+(i.inputUnit||"м²")+";"+(i.inputRate||1)+";"+itemInputM2(i).toFixed(2)+";"+i.product+";"+(g?g.title:"")+";"+(i.productChar||"")+";"+(i.qty||0)+";"+(i.outputUnit||"м²")+";"+(i.outputRate||1)+";"+itemOutputM2(i).toFixed(2)+";"+(i.timeMin||0)+";"+(pr!==null?pr.toFixed(2):"")+";"+(fu!==null?fu.toFixed(1):"")+";"+calcYieldValueFromItem(i)+";"+(n?n:"")+";"+(rt?rt:"")+";"+(r.downtime||0)+";"+(r.reason||"Нет")+"\n"})});
   downloadBlob(new Blob([csv],{type:"text/csv;charset=utf-8;"}),"cnc_report_"+new Date().toISOString().split("T")[0]+".csv");showToast("CSV выгружен!");
 }
 function exportExcel(){
   if(records.length===0){showToast("Нет данных!",true);return}
   const th='style="background:#9a6b3f;color:#ffffff;font-weight:bold;border:1px solid #999;padding:6px"';const td='style="border:1px solid #999;padding:5px"';const tdn='style="border:1px solid #999;padding:5px;text-align:right;mso-number-format:0.00"';
   let html='<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel"><head><meta charset="UTF-8"><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>Журнал ЧПУ</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table border="1">';
-  html+='<tr><th '+th+'>Дата</th><th '+th+'>Фамилия</th><th '+th+'>РЦ</th><th '+th+'>Входящий материал</th><th '+th+'>Хар-ка материала</th><th '+th+'>Переработано</th><th '+th+'>Ед.</th><th '+th+'>Коэф.</th><th '+th+'>Переработано м²</th><th '+th+'>Полуфабрикат</th><th '+th+'>Хар-ка полуфабриката</th><th '+th+'>Готово</th><th '+th+'>Ед.</th><th '+th+'>Коэф.</th><th '+th+'>Готово м²</th><th '+th+'>Выход %</th><th '+th+'>Норматив %</th><th '+th+'>Простой мин</th><th '+th+'>Причины простоя</th></tr>';
-  records.forEach(function(r){r.items.forEach(function(i){const n=normFor(i.product);html+='<tr><td '+td+'>'+formatDate(r.date)+'</td><td '+td+'>'+escHtml(r.name)+'</td><td '+td+'>'+escHtml(r.workCenter)+'</td><td '+td+'>'+escHtml(i.inputMaterial||"—")+'</td><td '+td+'>'+escHtml(i.inputChar||"")+'</td><td '+tdn+'>'+(i.inputQty||0)+'</td><td '+td+'>'+(i.inputUnit||"м²")+'</td><td '+tdn+'>'+(i.inputRate||1)+'</td><td '+tdn+'>'+itemInputM2(i).toFixed(2)+'</td><td '+td+'>'+escHtml(i.product)+'</td><td '+td+'>'+escHtml(i.productChar||"")+'</td><td '+tdn+'>'+(i.qty||0)+'</td><td '+td+'>'+(i.outputUnit||"м²")+'</td><td '+tdn+'>'+(i.outputRate||1)+'</td><td '+tdn+'>'+itemOutputM2(i).toFixed(2)+'</td><td '+tdn+'>'+calcYieldValueFromItem(i)+'</td><td '+tdn+'>'+(n?n:"")+'</td><td '+tdn+'>'+(r.downtime||0)+'</td><td '+td+'>'+escHtml(r.reason||"Нет")+'</td></tr>'})});
+  html+='<tr><th '+th+'>Дата</th><th '+th+'>Фамилия</th><th '+th+'>РЦ</th><th '+th+'>Входящий материал</th><th '+th+'>Хар-ка материала</th><th '+th+'>Переработано</th><th '+th+'>Ед.</th><th '+th+'>Коэф.</th><th '+th+'>Переработано м²</th><th '+th+'>Полуфабрикат</th><th '+th+'>Группа</th><th '+th+'>Хар-ка полуфабриката</th><th '+th+'>Готово</th><th '+th+'>Ед.</th><th '+th+'>Коэф.</th><th '+th+'>Готово м²</th><th '+th+'>Время мин</th><th '+th+'>м²/мин</th><th '+th+'>Вып. норматива %</th><th '+th+'>Выход %</th><th '+th+'>Норма выхода %</th><th '+th+'>Норматив м²/смену</th><th '+th+'>Простой мин</th><th '+th+'>Причины простоя</th></tr>';
+  records.forEach(function(r){r.items.forEach(function(i){const n=normFor(i.product);const rt=rateFor(i.product);const pr=itemProd(i);const fu=itemFulfill(i);const g=groupOf(i.product);html+='<tr><td '+td+'>'+formatDate(r.date)+'</td><td '+td+'>'+escHtml(r.name)+'</td><td '+td+'>'+escHtml(r.workCenter)+'</td><td '+td+'>'+escHtml(i.inputMaterial||"—")+'</td><td '+td+'>'+escHtml(i.inputChar||"")+'</td><td '+tdn+'>'+(i.inputQty||0)+'</td><td '+td+'>'+(i.inputUnit||"м²")+'</td><td '+tdn+'>'+(i.inputRate||1)+'</td><td '+tdn+'>'+itemInputM2(i).toFixed(2)+'</td><td '+td+'>'+escHtml(i.product)+'</td><td '+td+'>'+escHtml(g?g.title:"")+'</td><td '+td+'>'+escHtml(i.productChar||"")+'</td><td '+tdn+'>'+(i.qty||0)+'</td><td '+td+'>'+(i.outputUnit||"м²")+'</td><td '+tdn+'>'+(i.outputRate||1)+'</td><td '+tdn+'>'+itemOutputM2(i).toFixed(2)+'</td><td '+tdn+'>'+(i.timeMin||0)+'</td><td '+tdn+'>'+(pr!==null?pr.toFixed(2):"")+'</td><td '+tdn+'>'+(fu!==null?fu.toFixed(1):"")+'</td><td '+tdn+'>'+calcYieldValueFromItem(i)+'</td><td '+tdn+'>'+(n?n:"")+'</td><td '+tdn+'>'+(rt?rt:"")+'</td><td '+tdn+'>'+(r.downtime||0)+'</td><td '+td+'>'+escHtml(r.reason||"Нет")+'</td></tr>'})});
   html+='</table></body></html>';downloadBlob(new Blob(["\ufeff"+html],{type:"application/vnd.ms-excel"}),"cnc_report_"+new Date().toISOString().split("T")[0]+".xls");showToast("Excel выгружен!");
 }
 function downloadBlob(blob,name){const link=document.createElement("a");link.href=URL.createObjectURL(blob);link.download=name;link.click()}
@@ -1212,9 +1547,12 @@ function renderAll(){renderLog();renderDays();renderMonths()}
 
 window.showTab=showTab;window.addItemToForm=addItemToForm;window.removeItemRow=removeItemRow;window.calcYield=calcYield;
 window.addDtRow=addDtRow;window.removeDtRow=removeDtRow;window.recalcDtTotal=recalcDtTotal;
-window.dictAdd=dictAdd;window.dictDel=dictDel;window.dictRename=dictRename;window.normSet=normSet;window.normDel=normDel;
+window.dictAdd=dictAdd;window.dictDel=dictDel;window.dictRename=dictRename;window.dictToggle=dictToggle;
+window.groupCreate=groupCreate;window.groupAddItem=groupAddItem;window.groupDelItem=groupDelItem;window.groupDel=groupDel;window.groupEdit=groupEdit;window.saveShiftMinutes=saveShiftMinutes;
+window.groupUnlock=groupUnlock;window.groupLock=groupLock;window.changeGroupPwd=changeGroupPwd;
+window.checkGpwd=checkGpwd;window.closeGpwdModal=closeGpwdModal;
 window.addRecord=addRecord;window.openEditModal=openEditModal;window.closeEditModal=closeEditModal;window.saveEdit=saveEdit;
-window.startInlineEdit=startInlineEdit;window.deleteRecord=deleteRecord;window.clearAll=clearAll;
+window.deleteRecord=deleteRecord;window.clearAll=clearAll;
 window.onFilterChange=onFilterChange;window.undo=undo;window.redo=redo;
 window.exportExcel=exportExcel;window.exportCSV=exportCSV;
 window.savePlan=savePlan;window.onPlanMonthChange=onPlanMonthChange;
