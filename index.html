@@ -51,6 +51,15 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .dt-row{display:grid;grid-template-columns:1fr 140px 40px;gap:10px;align-items:end;margin-bottom:8px}
 .dt-total{font-weight:800;color:var(--danger);margin-top:6px;min-height:20px;font-family:var(--mono)}
 .dt-line{display:block;font-size:11px;color:var(--muted);margin-top:3px}
+.dict-add{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.dict-add input{flex:1;min-width:220px;padding:10px 12px;border-radius:6px;border:1.5px solid var(--border);background:var(--card2);color:var(--text);font-size:14px;outline:none}
+.dict-add input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
+.dict-list{display:flex;flex-wrap:wrap;gap:6px}
+.chip{background:var(--card2);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:12px;display:inline-flex;align-items:center;gap:8px;color:var(--text)}
+.chip b{color:var(--accent)}
+.chip button{background:none;border:none;cursor:pointer;font-size:12px;font-weight:800;padding:0 2px}
+.chip .ren{color:var(--accent2)}
+.chip .del{color:var(--danger)}
 .item-card{background:var(--card2);border-radius:8px;border:1.5px solid var(--border);padding:16px;margin-bottom:12px}
 .item-card:hover{border-color:var(--accent)}
 .item-section{margin-bottom:14px}.item-section:last-of-type{margin-bottom:0}
@@ -61,9 +70,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .m2-hint{font-size:12px;color:var(--accent2);font-family:var(--mono);min-height:18px;font-weight:700;background:rgba(95,116,130,.08);padding:8px 10px;border-radius:6px;border:1px solid rgba(95,116,130,.2);display:flex;align-items:center}
 .m2-hint:empty{background:transparent;border-color:transparent}
 .item-footer{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:12px;border-top:1px solid var(--border);gap:10px;flex-wrap:wrap}
-.item-yield-box{display:flex;align-items:center;gap:10px}
+.item-yield-box{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .item-yield-label{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
 .item-yield-value{font-size:20px;font-weight:900;font-family:var(--mono);color:var(--accent);padding:4px 14px;background:rgba(154,107,63,.08);border-radius:6px;border:1px solid rgba(154,107,63,.25);min-width:90px;text-align:center}
+.item-norm-hint{font-size:11px;color:var(--muted);font-family:var(--mono)}
 .remove-item{background:var(--danger);color:#fff;border:none;border-radius:6px;padding:10px 18px;font-size:13px;cursor:pointer;font-weight:900}
 .remove-item:hover{background:#933626}
 .ac-dropdown{position:fixed;z-index:3000;background:var(--card);border:1.5px solid var(--accent);border-radius:6px;max-height:280px;overflow-y:auto;box-shadow:0 10px 30px rgba(46,36,24,.18);display:none;max-width:92vw}
@@ -150,6 +160,7 @@ tbody tr:hover{background:rgba(154,107,63,.05)}
 .hint{font-size:12px;color:var(--muted);margin-top:6px;font-style:italic}
 .hint b{color:var(--accent)}
 .recent-badge{display:inline-block;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;background:rgba(74,124,89,.12);color:var(--ok);border:1px solid rgba(74,124,89,.3);margin-left:8px}
+@page{size:A4 landscape;margin:8mm}
 @media print{
   body{background:#fff!important;color:#000!important}
   .topbar,.filter-bar,.actions,.btn,.toast,.modal-overlay,.col-actions,.hint,.recent-badge,.items-header button,.conn-badge,.ac-dropdown{display:none!important}
@@ -166,6 +177,34 @@ tbody tr:hover{background:rgba(154,107,63,.05)}
   .bar-track{background:#fff!important;border:1px solid #999}
   .stat-card::before{background:#999!important}
 }
+@media print{
+  .page-title{font-size:18px;margin-bottom:2px}
+  .page-sub{font-size:10px;margin-bottom:8px}
+  .card{padding:10px;margin-bottom:8px;border-radius:6px}
+  .card h2{font-size:11px;margin-bottom:8px}
+  table,.log-table{font-size:9.5px;width:100%}
+  th,.log-table th{font-size:8.5px;padding:4px 5px;white-space:normal}
+  td,.log-table td{padding:3px 5px}
+  .log-table td:nth-child(4),.log-table td:nth-child(6){min-width:0}
+  .m2-sub,.rate-sub,.char-sub,.dt-line{font-size:8px;margin-top:1px}
+  .summary-grid{grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:8px}
+  .stat-card{padding:8px}
+  .stat-card .value{font-size:15px}
+  .stat-card .label{font-size:7px}
+  .plan-layout{grid-template-columns:1fr 1fr;gap:8px}
+  .gauge-svg{max-width:170px}
+  .gauge-stat .val{font-size:12px}
+  .gauge-stat .lbl{font-size:7px}
+  .reason-row{padding:6px;margin-bottom:6px}
+  .reason-name{font-size:10px}
+  .reason-nums{font-size:8px}
+  .bar-track{height:14px}
+  .bar-fill{font-size:8px}
+  .center-bar{padding:6px}
+  .center-bar-head{font-size:9px}
+  .center-bar-nums{font-size:8px}
+  .chart-svg{max-height:220px}
+}
 @media(max-width:900px){.plan-layout{grid-template-columns:1fr}}
 @media(max-width:768px){.topbar{padding:0 12px}.topbar nav{width:100%;overflow-x:auto}.nav-btn{padding:8px 14px;font-size:12px;white-space:nowrap}.content{padding:16px 12px}.item-section-fields{grid-template-columns:1fr 1fr}.dt-row{grid-template-columns:1fr 100px 36px}.form-grid{grid-template-columns:1fr}table{font-size:12px}.modal{padding:16px}.stat-card .value{font-size:24px}}
 </style>
@@ -179,7 +218,8 @@ tbody tr:hover{background:rgba(154,107,63,.05)}
     <button class="nav-btn locked" id="tab-days" data-text="📅 По дням" onclick="showTab('days',this)">🔒 📅 По дням</button>
     <button class="nav-btn locked" id="tab-months" data-text="📆 По месяцам" onclick="showTab('months',this)">🔒 📆 По месяцам</button>
     <button class="nav-btn locked" id="tab-analytics" data-text="📈 Аналитика" onclick="showTab('analytics',this)">🔒 📈 Аналитика</button>
-    <button class="nav-btn locked" id="tab-plan" data-text="📊 План" onclick="showTab('plan',this)">🔒 📊 План</button>
+    <button class="nav-btn locked" id="tab-dicts" data-text="⚙ Справочники" onclick="showTab('dicts',this)">🔒 ⚙ Справочники</button>
+    <button class="nav-btn locked" id="tab-plan" data-text="📊 План" onclick="showTab('plan',this)">🔒  План</button>
     <button class="nav-btn sys" id="chpwd-btn" style="display:none" onclick="openChpwdModal()">🔑 Пароль</button>
     <button class="nav-btn sys" id="lock-btn" style="display:none" onclick="lockAdmin()">🔒 Заблокировать</button>
   </nav>
@@ -203,7 +243,7 @@ tbody tr:hover{background:rgba(154,107,63,.05)}
       <p class="hint">💡 Если простоя не было — оставьте список пустым. Причина выбирается из подсказок или вписывается своя.</p>
       <div class="items-header" style="margin-top:18px"><h3>🔧 Переработка материала</h3><button class="btn btn-outline btn-sm" onclick="addItemToForm('form-items')">+ Добавить позицию</button></div>
       <div id="form-items"></div>
-      <p class="hint">💡 Начните вводить название или размер — появится список номенклатуры. Стрелки ↑↓ и Enter выбирают.</p>
+      <p class="hint">💡 Наведите курсор на поле названия — выпадет список номенклатуры. Печать текста фильтрует список. Норматив выхода по продукту показывается рядом с выходом.</p>
       <div class="actions"><button class="btn btn-primary" onclick="addRecord()">➕ Добавить запись</button></div>
     </div>
   </div>
@@ -281,7 +321,7 @@ tbody tr:hover{background:rgba(154,107,63,.05)}
       <div style="overflow-x:auto"><table><thead><tr><th>Материал</th><th class="num">Позиций</th><th class="num">Переработано (м²)</th><th class="num">Получено (м²)</th><th class="num">Ср. выход %</th></tr></thead><tbody id="materials-body"></tbody></table></div>
       <div id="materials-empty" class="empty-msg">Нет данных.</div></div>
     <div class="card"><h2>Статистика по полуфабрикатам</h2>
-      <div style="overflow-x:auto"><table><thead><tr><th>Полуфабрикат</th><th class="num">Позиций</th><th class="num">Произведено (м²)</th><th class="num">Переработано сырья (м²)</th><th class="num">Ср. выход %</th></tr></thead><tbody id="products-body"></tbody></table></div>
+      <div style="overflow-x:auto"><table><thead><tr><th>Полуфабрикат</th><th class="num">Позиций</th><th class="num">Произведено (м²)</th><th class="num">Переработано сырья (м²)</th><th class="num">Ср. выход %</th><th class="num">Норматив %</th><th class="num">Откл. п.п.</th></tr></thead><tbody id="products-body"></tbody></table></div>
       <div id="products-empty" class="empty-msg">Нет данных.</div></div>
     <div class="card"><h2>Детализация простоев по дням</h2>
       <div style="overflow-x:auto"><table><thead><tr><th>Дата</th><th>РЦ</th><th>Оператор</th><th>Причина</th><th class="num">Время (мин)</th></tr></thead><tbody id="downtime-details-body"></tbody></table></div>
@@ -289,6 +329,36 @@ tbody tr:hover{background:rgba(154,107,63,.05)}
     <div class="card"><h2>Производительность операторов</h2>
       <div style="overflow-x:auto"><table><thead><tr><th>Оператор</th><th class="num">Записей</th><th class="num">Выпуск (м²)</th><th class="num">Переработано (м²)</th><th class="num">Ср. выход %</th><th class="num">Простой (мин)</th></tr></thead><tbody id="operators-body"></tbody></table></div>
       <div id="operators-empty" class="empty-msg">Нет данных.</div></div>
+  </div>
+
+  <div id="panel-dicts" class="panel">
+    <h1 class="page-title">СПРАВОЧНИКИ <span>И НОРМАТИВЫ</span></h1>
+    <p class="page-sub">Управление номенклатурой, операторами, причинами и нормативами выхода. Изменения сразу применяются на всех компьютерах.</p>
+    <div class="card"><h2>Входящий материал</h2>
+      <div class="dict-add"><input type="text" id="dict-add-materials" placeholder="Новая позиция — впишите и нажмите «Добавить»"><button class="btn btn-primary btn-sm" onclick="dictAdd('materials')">+ Добавить</button></div>
+      <div class="dict-list" id="dict-list-materials"></div>
+    </div>
+    <div class="card"><h2>Полуфабрикат</h2>
+      <div class="dict-add"><input type="text" id="dict-add-semiproducts" placeholder="Новая позиция — впишите и нажмите «Добавить»"><button class="btn btn-primary btn-sm" onclick="dictAdd('semiproducts')">+ Добавить</button></div>
+      <div class="dict-list" id="dict-list-semiproducts"></div>
+    </div>
+    <div class="card"><h2>Нормативы выхода по продуктам</h2>
+      <div class="dict-add"><input type="text" id="norm-product" list="semiproductsList" placeholder="Продукт (из списка или свой)"><input type="number" id="norm-value" min="1" max="300" step="0.1" placeholder="Норма, %" style="max-width:150px"><button class="btn btn-primary btn-sm" onclick="normSet()">Установить</button></div>
+      <p class="hint">Выход ≥ нормы подсвечивается зелёным, до −10 п.п. — жёлтым, ниже — красным (в форме, журнале и аналитике).</p>
+      <div class="dict-list" id="norm-list"></div>
+    </div>
+    <div class="card"><h2>Операторы</h2>
+      <div class="dict-add"><input type="text" id="dict-add-operators" placeholder="Фамилия И.О."><button class="btn btn-primary btn-sm" onclick="dictAdd('operators')">+ Добавить</button></div>
+      <div class="dict-list" id="dict-list-operators"></div>
+    </div>
+    <div class="card"><h2>Характеристики</h2>
+      <div class="dict-add"><input type="text" id="dict-add-chars" placeholder="Например: Клир"><button class="btn btn-primary btn-sm" onclick="dictAdd('chars')">+ Добавить</button></div>
+      <div class="dict-list" id="dict-list-chars"></div>
+    </div>
+    <div class="card"><h2>Причины простоя</h2>
+      <div class="dict-add"><input type="text" id="dict-add-reasons" placeholder="Например: Поломка станка"><button class="btn btn-primary btn-sm" onclick="dictAdd('reasons')">+ Добавить</button></div>
+      <div class="dict-list" id="dict-list-reasons"></div>
+    </div>
   </div>
 
   <div id="panel-plan" class="panel">
@@ -379,21 +449,24 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// ═══════════════ НАСТРОЙКИ ═══════════════
-const OPERATORS=["Комар А.В.","Воронецкий К.В.","Иващенко М.В.","Хамицевич С.И.","Шешко Е.Н.","Шавела Ю.В.","Вашкевич А.П.","Барышевский А.А.","Федорович Е.Д."];
-const CHAR_OPTIONS=["Клир","Стандарт 2","Стандарт"];
+// ═══════════════ БАЗОВЫЕ СПРАВОЧНИКИ (при первом запуске уходят в облако) ═══════════════
+const DEF_OPERATORS=["Комар А.В.","Воронецкий К.В.","Иващенко М.В.","Хамицевич С.И.","Шешко Е.Н.","Шавела Ю.В.","Вашкевич А.П.","Барышевский А.А.","Федорович Е.Д."];
+const DEF_CHARS=["Клир","Стандарт 2","Стандарт"];
+const DEF_REASONS=["Поломка станка","Нет материала","Нет инструмента","Плановое ТО","Смена инструмента","Настройка/Наладка","Ожидание крана","Отключение энергии","Другое"];
 const WORK_CENTERS=["Venture 2.5L","Venture 3L","Venture 5L"];
-const SEMIPRODUCTS=["ТПК.ТЕ03 трапеция дуб (15.00х190х440)","ТПК.ТЕ03 отражение (15.00х134х403.05) дуб","ТПК.ТЕ03 отражение (15.00х190х190) дуб","ТПК.ТЕ03 отражение (15.00х190х380) дуб","ТПК.ТЕ03 отражение (19,05х190х190) дуб","ТПК.ТЕ03 отражение (19.05х134х403.05) дуб","ТПК.ТЕ03 отражение (19.05х190х380) дуб","ТПК.ТЕ01 кофейное зерно дуб (15x127x433,8)","ТПК.ТЕ01 кофейное зерно дуб (19,05x127x433,8)","ТПК.ТЕ01 кофейное зерно орех (15x127x433,8)","ТПК.ТЕ01 кофейное зерно орех (19,05x127x433,8)","ТПК.ТЕ01 Опера Хаус орех (15,00х127х622,03)","ТПК.ТЕ01 Опера Хаус орех (19,05х127х622,03)","ТПК.ТЕ01 ОпераХаус дуб (15×127×622,03)","ТПК.ТЕ01 ОпераХаус дуб (19,05×127×622,03)","ТПК.ТЕ03 лавровый лист т.15 мм, дуб 190","ТПК.ТЕ03 ромб дуб 190","ТПК.ТЕ03 ромб орех 190","ТПК.ТЕ03 ромб т.15 мм, дуб 190","ТПК.ТЕ03 чайный лист дуб (15×190×350)","ТПК.ТЕ03 чайный лист дуб (19.05×190×350)","ТПК.ТЕ03 чайный лист орех (15×190×350)","ТПК.ТЕ03 чайный лист орех (19.05×190×350)","ТПК.ТЕ03 Эльсинор ам. орех (15×190×530,72)","ТПК.ТЕ03 Эльсинор ам. орех (19,05×190×530,72)","ТПК.ТЕ03 Эльсинор дуб (15×190×530,72)","ТПК.ТЕ03 Эльсинор дуб (19,05×190×530,72)"];
-const INPUT_MATERIALS=["ПФРШ.ТЕ03 Эльсинор ам. орех торц.","ПФРШ.ТЕ03 Эльсинор ам. орех, торц. т.15,0 мм","ПФРШ.ТЕ03 Эльсинор дуб торц.","ПФРШ.ТЕ03 Эльсинор дуб, торц. т.15,0 мм","ПФРШ.ТЕ03- Чайный лист дуб, торц. левый","ПФРШ.ТЕ03- Чайный лист дуб, торц. левый, т.15 мм","ПФРШ.ТЕ03- Чайный лист дуб, торц. правый","ПФРШ.ТЕ03- Чайный лист дуб, торц. правый, т.15 мм","ПФРШ.ТЕ03- Чайный лист орех, торц. левый","ПФРШ.ТЕ03- Чайный лист орех, торц. левый, т.15 мм","ПФРШ.ТЕ03- Чайный лист орех, торц. правый","ПФРШ.ТЕ03- Чайный лист орех, торц. правый, т.15 мм","ПФРШ.ТЕ01 Опера Хаус ам. орех торц.","ПФРШ.ТЕ01 Опера Хаус ам. орех, торц. т.15,0 мм","ПФРШ.ТЕ01 Опера Хаус дуб торц.","ПФРШ.ТЕ01 Опера Хаус дуб, торц. т.15,0 мм"];
-const REASONS=["Поломка станка","Нет материала","Нет инструмента","Плановое ТО","Смена инструмента","Настройка/Наладка","Ожидание крана","Отключение энергии","Другое"];
+const DEF_MATERIALS=["ПФРШ.ТЕ03 Эльсинор ам. орех торц.","ПФРШ.ТЕ03 Эльсинор ам. орех, торц. т.15,0 мм","ПФРШ.ТЕ03 Эльсинор дуб торц.","ПФРШ.ТЕ03 Эльсинор дуб, торц. т.15,0 мм","ПФРШ.ТЕ03- Чайный лист дуб, торц. левый","ПФРШ.ТЕ03- Чайный лист дуб, торц. левый, т.15 мм","ПФРШ.ТЕ03- Чайный лист дуб, торц. правый","ПФРШ.ТЕ03- Чайный лист дуб, торц. правый, т.15 мм","ПФРШ.ТЕ03- Чайный лист орех, торц. левый","ПФРШ.ТЕ03- Чайный лист орех, торц. левый, т.15 мм","ПФРШ.ТЕ03- Чайный лист орех, торц. правый","ПФРШ.ТЕ03- Чайный лист орех, торц. правый, т.15 мм","ПФРШ.ТЕ01 Опера Хаус ам. орех торц.","ПФРШ.ТЕ01 Опера Хаус ам. орех, торц. т.15,0 мм","ПФРШ.ТЕ01 Опера Хаус дуб торц.","ПФРШ.ТЕ01 Опера Хаус дуб, торц. т.15,0 мм","ТРПМТ, дуб, Блуа","ТРПМТ, дуб, Брезе","ТРПМТ, дуб, Версаль","ТРПМТ, дуб, Ланже","ТРПМТ, дуб, Монсоро","ТРПМТ, дуб, Таттершел","ТРПМТ, дуб, Трианон","ТРПМТ, дуб, Фонтенбло","ТРПМТ, дуб, Хелмсли","ТРПМТ, дуб, Шеверни","ТРПМТ, дуб, Шенонсо","ТРПМТ, дуб, Шинон","ТРПМТ, дуб/орех, Ланже","ТРПМТ, орех, Блуа","ТРПМТ, орех, Брезе","ТРПМТ, орех, Версаль","ТРПМТ, орех, Ланже","ТРПМТ, орех, Монсоро","ТРПМТ, орех, Таттершел","ТРПМТ, орех, Трианон","ТРПМТ, орех, Фонтенбло","ТРПМТ, орех, Хелмсли","ТРПМТ, орех, Шеверни","ТРПМТ, орех, Шенонсо","ТРПМТ, орех, Шинон","ТРПМТ, Ньюарк, дуб/ам.орех, т.15 мм","ТРПМТ, Ньюарк, дуб/ам.орех, т.19 мм","ТРПМТ, Витте, дуб, т.15 мм","ТРПМТ, Витте, дуб, т.19 мм","ТРПМТ, Витте, орех, т.15 мм","ТРПМТ, Витте, орех, т.19 мм","ТРПМТ, Шарлевиль, дуб/ам.орех, т.19 мм","ПФпК.ТЕ03 - Ромб, т.15 мм, дуб","ПФпК.ТЕ03 - Трапеция, т.15 мм, дуб","ПФК.ТЕ03 отражение т. 15,00, дуб торц. №3","ПФК.ТЕ03 отражение т. 15,00х134 мм, дуб торц. №2","ПФК.ТЕ03 отражение т. 19,05, дуб торц. №3","ПФК.ТЕ03 отражение т. 19,05х134 мм, дуб торц. №2","ПФК.ТЕ03 т.15 мм, дуб","ПФпК.ТЕ03-219,39 торц. для Ромб дуб","ПФпК.ТЕ03-219,39 торц. для Ромб орех","ПФпК.ТЕ03-219,39 торц. для Ромб, 15 мм, дуб","ПФпК.ТЕ03-219,39 торц. для Ромб, 15 мм, орех"];
+const DEF_SEMIS=["ТПК.ТЕ03 трапеция дуб (15.00х190х440)","ТПК.ТЕ03 отражение (15.00х134х403.05) дуб","ТПК.ТЕ03 отражение (15.00х190х190) дуб","ТПК.ТЕ03 отражение (15.00х190х380) дуб","ТПК.ТЕ03 отражение (19,05х190х190) дуб","ТПК.ТЕ03 отражение (19.05х134х403.05) дуб","ТПК.ТЕ03 отражение (19.05х190х380) дуб","ТПК.ТЕ01 кофейное зерно дуб (15x127x433,8)","ТПК.ТЕ01 кофейное зерно дуб (19,05x127x433,8)","ТПК.ТЕ01 кофейное зерно орех (15x127x433,8)","ТПК.ТЕ01 кофейное зерно орех (19,05x127x433,8)","ТПК.ТЕ01 Опера Хаус орех (15,00х127х622,03)","ТПК.ТЕ01 Опера Хаус орех (19,05х127х622,03)","ТПК.ТЕ01 ОпераХаус дуб (15×127×622,03)","ТПК.ТЕ01 ОпераХаус дуб (19,05×127×622,03)","ТПК.ТЕ03 лавровый лист т.15 мм, дуб 190","ТПК.ТЕ03 ромб дуб 190","ТПК.ТЕ03 ромб орех 190","ТПК.ТЕ03 ромб т.15 мм, дуб 190","ТПК.ТЕ03 чайный лист дуб (15×190×350)","ТПК.ТЕ03 чайный лист дуб (19.05×190×350)","ТПК.ТЕ03 чайный лист орех (15×190×350)","ТПК.ТЕ03 чайный лист орех (19.05×190×350)","ТПК.ТЕ03 Эльсинор ам. орех (15×190×530,72)","ТПК.ТЕ03 Эльсинор ам. орех (19,05×190×530,72)","ТПК.ТЕ03 Эльсинор дуб (15×190×530,72)","ТПК.ТЕ03 Эльсинор дуб (19,05×190×530,72)"];
 const MONTH_NAMES=["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь"];
 const UNITS=["м²","шт"];
 const RECENT_KEY="cnc_recent_input_v7";
 const SETTINGS_KEY="cnc_settings_v1";
 const UNLOCK_KEY="cnc_unlocked_session";
 const HISTORY_LIMIT=50;
+const DICT_META=[["materials","Входящий материал"],["semiproducts","Полуфабрикат"],["operators","Операторы"],["chars","Характеристики"],["reasons","Причины простоя"]];
 
 let records=[],editingId=null,monthlyPlans={},adminPwd="1234";
+let dicts={materials:DEF_MATERIALS.slice(),semiproducts:DEF_SEMIS.slice(),operators:DEF_OPERATORS.slice(),chars:DEF_CHARS.slice(),reasons:DEF_REASONS.slice()};
+let norms={};
 let recent={name:"",workCenter:"",items:[]};
 let historyStack=[],redoStack=[];
 let pendingUnlockCallback=null;
@@ -424,11 +497,114 @@ function subscribeAll(){
   onSnapshot(doc(db,"settings","main"),function(d){
     if(d.exists()){const data=d.data();if(data.pwd)adminPwd=String(data.pwd)}
   },function(){});
+  onSnapshot(doc(db,"dicts","main"),function(d){
+    if(d.exists()){
+      const v=d.data();
+      if(Array.isArray(v.materials))dicts.materials=v.materials;
+      if(Array.isArray(v.semiproducts))dicts.semiproducts=v.semiproducts;
+      if(Array.isArray(v.operators))dicts.operators=v.operators;
+      if(Array.isArray(v.chars))dicts.chars=v.chars;
+      if(Array.isArray(v.reasons))dicts.reasons=v.reasons;
+      refreshDictUI();renderAll();renderActive();
+    }
+  },function(){});
+  onSnapshot(doc(db,"norms","main"),function(d){
+    norms=d.exists()?d.data():{};
+    const act=document.querySelector(".panel.active");
+    if(act&&act.id==="panel-dicts")renderDicts();
+    renderAll();renderActive();
+  },function(){});
 }
 async function seedSettings(){
   const ref=doc(db,"settings","main");
   const snap=await getDoc(ref);
   if(!snap.exists()){await setDoc(ref,{pwd:"1234"})}
+}
+async function seedDicts(){
+  const ref=doc(db,"dicts","main");
+  const snap=await getDoc(ref);
+  if(!snap.exists()){
+    await setDoc(ref,{materials:dicts.materials,semiproducts:dicts.semiproducts,operators:dicts.operators,chars:dicts.chars,reasons:dicts.reasons});
+  }
+  const nref=doc(db,"norms","main");
+  const nsnap=await getDoc(nref);
+  if(!nsnap.exists()){await setDoc(nref,{})}
+}
+function saveDicts(){
+  setDoc(doc(db,"dicts","main"),{materials:dicts.materials,semiproducts:dicts.semiproducts,operators:dicts.operators,chars:dicts.chars,reasons:dicts.reasons})
+    .catch(function(e){showToast("Ошибка сохранения справочника: "+e.message,true)});
+}
+function saveNorms(){
+  setDoc(doc(db,"norms","main"),norms)
+    .catch(function(e){showToast("Ошибка сохранения норматива: "+e.message,true)});
+}
+
+// ═══════════════ СПРАВОЧНИКИ: UI ═══════════════
+function dictAdd(list){
+  const inp=document.getElementById("dict-add-"+list);
+  const v=inp.value.trim();
+  if(!v){showToast("Введите название!",true);return}
+  if(dicts[list].indexOf(v)!==-1){showToast("Уже есть в списке!",true);return}
+  dicts[list].push(v);
+  saveDicts();inp.value="";renderDicts();refreshDictUI();
+  showToast("Добавлено в справочник");
+}
+function dictDel(list,idx){
+  if(!confirm("Удалить «"+dicts[list][idx]+"» из справочника?"))return;
+  dicts[list].splice(idx,1);
+  saveDicts();renderDicts();refreshDictUI();
+}
+function dictRename(list,idx){
+  const v=prompt("Новое название:",dicts[list][idx]);
+  if(v===null)return;
+  const t=v.trim();if(!t)return;
+  dicts[list][idx]=t;
+  saveDicts();renderDicts();refreshDictUI();
+}
+function normSet(){
+  const p=document.getElementById("norm-product").value.trim();
+  const v=parseFloat(document.getElementById("norm-value").value);
+  if(!p){showToast("Укажите продукт!",true);return}
+  if(!v||v<=0){showToast("Норматив должен быть больше 0!",true);return}
+  norms[p]=v;
+  saveNorms();
+  document.getElementById("norm-product").value="";
+  document.getElementById("norm-value").value="";
+  renderDicts();renderAll();renderActive();
+  showToast("Норматив установлен: "+p+" = "+v+"%");
+}
+function normDel(encKey){
+  const k=decodeURIComponent(encKey);
+  if(!confirm("Удалить норматив для «"+k+"»?"))return;
+  delete norms[k];
+  saveNorms();renderDicts();renderAll();renderActive();
+}
+function normFor(p){return (p&&norms[p])?norms[p]:null}
+function renderDicts(){
+  DICT_META.forEach(function(m){
+    const el=document.getElementById("dict-list-"+m[0]);
+    if(!el)return;
+    el.innerHTML=dicts[m[0]].map(function(v,i){
+      return '<span class="chip">'+escHtml(v)+' <button class="ren" title="Переименовать" onclick="dictRename(\''+m[0]+'\','+i+')">✎</button><button class="del" title="Удалить" onclick="dictDel(\''+m[0]+'\','+i+')">✕</button></span>';
+    }).join("");
+  });
+  const nl=document.getElementById("norm-list");
+  if(nl){
+    const keys=Object.keys(norms).sort();
+    nl.innerHTML=keys.length?keys.map(function(k){
+      return '<span class="chip"><b>'+escHtml(k)+'</b> — '+norms[k]+'% <button class="del" title="Удалить" onclick="normDel(\''+encodeURIComponent(k)+'\')">✕</button></span>';
+    }).join(""):'<span class="hint">Нормативы ещё не заданы.</span>';
+  }
+}
+function refreshDictUI(){
+  fillDatalist("operatorsList",dicts.operators);
+  fillDatalist("semiproductsList",dicts.semiproducts);
+  fillDatalist("inputMaterialsList",dicts.materials);
+  fillDatalist("charList",dicts.chars);
+  fillDatalist("reasonsList",dicts.reasons);
+  fillOperatorSelects();
+  const act=document.querySelector(".panel.active");
+  if(act&&act.id==="panel-dicts")renderDicts();
 }
 
 // ═══════════════ ПРОСТОИ: НЕСКОЛЬКО ПРИЧИН ═══════════════
@@ -486,10 +662,27 @@ function collectDt(cid){
 }
 
 // ═══════════════ УМНЫЙ ПОДБОР ═══════════════
-const AC_LISTS={materials:function(){return INPUT_MATERIALS},semiproducts:function(){return SEMIPRODUCTS}};
+const AC_LISTS={materials:function(){return dicts.materials},semiproducts:function(){return dicts.semiproducts}};
 let acState={input:null,idx:-1,el:null,listKey:null};
+let acHoverInput=false,acHoverList=false,acOpenTimer=null,acCloseTimer=null;
+function scheduleAcClose(){
+  if(acCloseTimer)clearTimeout(acCloseTimer);
+  acCloseTimer=setTimeout(function(){
+    const inp=acState.input;
+    const focused=inp&&document.activeElement===inp;
+    if(!acHoverInput&&!acHoverList&&!focused)closeAc();
+  },220);
+}
 function norm(s){return String(s==null?"":s).toLowerCase().replace(/×/g,"x").replace(/х/g,"x").replace(/Х/g,"x").replace(/,/g,".").replace(/ё/g,"е").replace(/\s+/g," ").trim()}
-function ensureAcEl(){if(!acState.el){const d=document.createElement("div");d.className="ac-dropdown";document.body.appendChild(d);acState.el=d}return acState.el}
+function ensureAcEl(){
+  if(!acState.el){
+    const d=document.createElement("div");d.className="ac-dropdown";document.body.appendChild(d);
+    d.addEventListener("mouseenter",function(){acHoverList=true;if(acCloseTimer){clearTimeout(acCloseTimer);acCloseTimer=null}});
+    d.addEventListener("mouseleave",function(){acHoverList=false;scheduleAcClose()});
+    acState.el=d;
+  }
+  return acState.el;
+}
 function closeAc(){if(acState.el){acState.el.style.display="none";acState.idx=-1}}
 function paintAc(){const el=acState.el;if(!el)return;for(let i=0;i<el.children.length;i++){el.children[i].classList.toggle("sel",i===acState.idx)}if(acState.idx>=0&&el.children[acState.idx])el.children[acState.idx].scrollIntoView({block:"nearest"})}
 function pickAc(v){const input=acState.input;if(!input)return;input.value=v;input.title=v;closeAc()}
@@ -508,9 +701,22 @@ function attachAutocomplete(input,listKey){
   input.setAttribute("autocomplete","off");
   input.addEventListener("focus",function(){openAc(input,listKey)});
   input.addEventListener("input",function(){openAc(input,listKey);input.title=input.value});
+  input.addEventListener("mouseenter",function(){
+    acHoverInput=true;
+    if(acCloseTimer){clearTimeout(acCloseTimer);acCloseTimer=null}
+    if(acOpenTimer)clearTimeout(acOpenTimer);
+    acOpenTimer=setTimeout(function(){openAc(input,listKey)},180);
+  });
+  input.addEventListener("mouseleave",function(){
+    acHoverInput=false;
+    if(acOpenTimer){clearTimeout(acOpenTimer);acOpenTimer=null}
+    scheduleAcClose();
+  });
   input.addEventListener("blur",function(){
-    const v=norm(input.value);if(v){const all=AC_LISTS[listKey]?AC_LISTS[listKey]():[];for(let i=0;i<all.length;i++){if(norm(all[i])===v){input.value=all[i];break}}}
-    input.title=input.value;setTimeout(closeAc,150);
+    const v=norm(input.value);
+    if(v){const all=AC_LISTS[listKey]?AC_LISTS[listKey]():[];for(let i=0;i<all.length;i++){if(norm(all[i])===v){input.value=all[i];break}}}
+    input.title=input.value;
+    setTimeout(function(){if(!acHoverList&&!acHoverInput)closeAc()},150);
   });
   input.addEventListener("keydown",function(e){
     const el=acState.el;if(!el||el.style.display!=="block")return;const n=el.children.length;
@@ -520,7 +726,7 @@ function attachAutocomplete(input,listKey){
     else if(e.key==="Escape"){closeAc()}
   });
 }
-document.addEventListener("click",function(e){if(acState.el&&!acState.el.contains(e.target))closeAc()});
+document.addEventListener("click",function(e){if(acState.el&&!acState.el.contains(e.target)&&e.target!==acState.input)closeAc()});
 window.addEventListener("scroll",function(e){if(acState.el&&acState.el.contains(e.target))return;closeAc()},true);
 window.addEventListener("resize",function(){closeAc()});
 
@@ -539,7 +745,7 @@ function updateLockUI(){
   const un=isAdminUnlocked();
   document.getElementById("lock-btn").style.display=un?"flex":"none";
   document.getElementById("chpwd-btn").style.display=un?"flex":"none";
-  ["log","days","months","analytics","plan"].forEach(function(n){const b=document.getElementById("tab-"+n);if(b){b.innerHTML=(un?"":"🔒 ")+b.getAttribute("data-text");b.classList.toggle("locked",!un)}});
+  ["log","days","months","analytics","dicts","plan"].forEach(function(n){const b=document.getElementById("tab-"+n);if(b){b.innerHTML=(un?"":"🔒 ")+b.getAttribute("data-text");b.classList.toggle("locked",!un)}});
 }
 function openChpwdModal(){document.getElementById("chpwd-old").value="";document.getElementById("chpwd-new").value="";document.getElementById("chpwd-new2").value="";document.getElementById("chpwd-modal").classList.add("open")}
 function closeChpwdModal(){document.getElementById("chpwd-modal").classList.remove("open")}
@@ -576,26 +782,31 @@ function toSquareMeters(v,u,r){if(u==="шт")return v*(r||1);return v}
 function itemInputM2(i){return toSquareMeters(i.inputQty||0,i.inputUnit||"м²",i.inputRate)}
 function itemOutputM2(i){return toSquareMeters(i.qty||0,i.outputUnit||"м²",i.outputRate)}
 function calcYieldValueFromItem(i){const a=itemInputM2(i),b=itemOutputM2(i);if(a<=0)return"—";return((b/a)*100).toFixed(1)+"%"}
+function yieldClass(yStr,product){
+  if(yStr==="—")return"";
+  const y=parseFloat(yStr);const n=normFor(product);
+  if(n){return y>=n?"yield-high":y>=n-10?"yield-mid":"yield-low"}
+  return y>=90?"yield-high":y>=70?"yield-mid":"yield-low";
+}
 function escHtml(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
 function escAttr(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
 
 // ═══════════════ СТАРТ ═══════════════
 async function initApp(){
   loadRecent();loadSettings();
-  try{await seedSettings();subscribeAll();setConnBadge(true);bootUI()}
+  try{await seedSettings();await seedDicts();subscribeAll();setConnBadge(true);bootUI()}
   catch(e){console.error(e);setConnBadge(false);showToast("Ошибка инициализации!",true);bootUI()}
 }
 function bootUI(){
   fillSelect("inp-workcenter",WORK_CENTERS);
   fillSelect("edit-workcenter",WORK_CENTERS);
   ["log-filter","days-filter","months-filter","analytics-center"].forEach(function(id){const s=document.getElementById(id);WORK_CENTERS.forEach(function(w){const o=document.createElement("option");o.value=w;o.textContent=w;s.appendChild(o)})});
-  fillOperatorSelects();
-  fillDatalist("operatorsList",OPERATORS);fillDatalist("semiproductsList",SEMIPRODUCTS);fillDatalist("inputMaterialsList",INPUT_MATERIALS);fillDatalist("charList",CHAR_OPTIONS);fillDatalist("reasonsList",REASONS);
+  refreshDictUI();
   document.getElementById("inp-date").value=new Date().toISOString().split("T")[0];
   fillPlanMonthSelector();applySettings();applyRecentToForm();updateLockUI();renderAll();updateUndoRedoButtons();renderPlan();renderAnalytics();
 }
 function fillOperatorSelects(){
-  const names=new Set(OPERATORS);records.forEach(function(r){names.add(r.name)});
+  const names=new Set(dicts.operators);records.forEach(function(r){names.add(r.name)});
   ["log-operator","analytics-operator"].forEach(function(id){const s=document.getElementById(id);const cur=s.value||"all";s.innerHTML='<option value="all">Все</option>';Array.from(names).sort().forEach(function(n){const o=document.createElement("option");o.value=n;o.textContent=n;s.appendChild(o)});s.value=cur||"all"});
 }
 function fillSelect(id,vals){const s=document.getElementById(id);s.innerHTML="";vals.forEach(function(v){const o=document.createElement("option");o.value=v;o.textContent=v;s.appendChild(o)})}
@@ -629,9 +840,9 @@ function activateTab(name,btn){
   document.querySelectorAll(".nav-btn").forEach(function(t){t.classList.remove("active")});
   document.querySelectorAll(".panel").forEach(function(p){p.classList.remove("active")});
   btn.classList.add("active");document.getElementById("panel-"+name).classList.add("active");
-  if(name==="log")renderLog();if(name==="days")renderDays();if(name==="months")renderMonths();if(name==="analytics")renderAnalytics();if(name==="plan")renderPlan();
+  if(name==="log")renderLog();if(name==="days")renderDays();if(name==="months")renderMonths();if(name==="analytics")renderAnalytics();if(name==="plan")renderPlan();if(name==="dicts")renderDicts();
 }
-function renderActive(){const a=document.querySelector(".panel.active");if(!a)return;if(a.id==="panel-analytics")renderAnalytics();if(a.id==="panel-plan")renderPlan()}
+function renderActive(){const a=document.querySelector(".panel.active");if(!a)return;if(a.id==="panel-analytics")renderAnalytics();if(a.id==="panel-plan")renderPlan();if(a.id==="panel-dicts")renderDicts()}
 
 function updateRecent(record){recent.name=record.name;recent.workCenter=record.workCenter;recent.items=record.items.map(function(i){return{inputMaterial:i.inputMaterial,inputChar:i.inputChar||"",product:i.product,productChar:i.productChar||"",inputUnit:i.inputUnit||"м²",outputUnit:i.outputUnit||"м²",inputRate:i.inputRate||1,outputRate:i.outputRate||1}});saveRecent()}
 function applyRecentToForm(){
@@ -641,7 +852,7 @@ function applyRecentToForm(){
   const c=document.getElementById("form-items");c.innerHTML="";
   if(recent.items&&recent.items.length>0){recent.items.forEach(function(it){addItemToForm("form-items",{inputMaterial:it.inputMaterial||"",inputChar:it.inputChar||"",product:it.product||"",productChar:it.productChar||"",inputUnit:it.inputUnit||"м²",outputUnit:it.outputUnit||"м²",inputRate:it.inputRate||1,outputRate:it.outputRate||1})});applied=true}else{addItemToForm("form-items")}
   hint.style.display=applied?"inline-block":"none";
-  fillDatalist("operatorsList",OPERATORS);fillDatalist("semiproductsList",SEMIPRODUCTS);fillDatalist("inputMaterialsList",INPUT_MATERIALS);fillDatalist("charList",CHAR_OPTIONS);
+  refreshDictUI();
 }
 
 let itemCounter=0;
@@ -654,20 +865,20 @@ function createItemRow(data){
   const yv=(data.qty&&data.inputQty)?calcYieldValueFromItem(data):"—";
   function uo(sel){return UNITS.map(function(u){return'<option value="'+u+'"'+(u===sel?" selected":"")+'>'+u+'</option>'}).join("")}
   div.innerHTML='<div class="item-section"><div class="item-section-title">Входящий материал</div><div class="item-section-fields">'+
-    '<div class="field"><label>Название материала</label><input type="text" class="item-input-material" placeholder="Начните вводить…" value="'+escAttr(data.inputMaterial||"")+'" title="'+escAttr(data.inputMaterial||"")+'"></div>'+
+    '<div class="field"><label>Название материала</label><input type="text" class="item-input-material" placeholder="Наведите курсор или начните вводить…" value="'+escAttr(data.inputMaterial||"")+'" title="'+escAttr(data.inputMaterial||"")+'"></div>'+
     '<div class="field"><label>Характеристика</label><input type="text" class="item-input-char" list="charList" placeholder="Клир, Стандарт…" value="'+escAttr(data.inputChar||"")+'" autocomplete="off"></div>'+
     '<div class="field"><label>Количество</label><input type="number" class="item-input-qty" min="0" step="0.01" placeholder="0" value="'+(data.inputQty||"")+'" oninput="calcYield(this)"></div>'+
     '<div class="field"><label>Ед.</label><select class="item-input-unit" onchange="calcYield(this)">'+uo(inU)+'</select></div>'+
     '<div class="field"><label>Коэф. м²/шт</label><input type="number" class="item-input-rate" min="0" step="0.001" placeholder="1" value="'+inR+'" oninput="calcYield(this)"></div>'+
     '<div class="field"><label>Пересчёт в м²</label><div class="m2-hint item-input-m2-hint">'+inM2+'</div></div></div></div>'+
     '<div class="item-section"><div class="item-section-title">Полуфабрикат</div><div class="item-section-fields">'+
-    '<div class="field"><label>Название полуфабриката</label><input type="text" class="item-product" placeholder="Начните вводить…" value="'+escAttr(data.product||"")+'" title="'+escAttr(data.product||"")+'"></div>'+
+    '<div class="field"><label>Название полуфабриката</label><input type="text" class="item-product" placeholder="Наведите курсор или начните вводить…" value="'+escAttr(data.product||"")+'" title="'+escAttr(data.product||"")+'" oninput="calcYield(this)"></div>'+
     '<div class="field"><label>Характеристика</label><input type="text" class="item-product-char" list="charList" placeholder="Клир, Стандарт…" value="'+escAttr(data.productChar||"")+'" autocomplete="off"></div>'+
     '<div class="field"><label>Количество</label><input type="number" class="item-qty" min="0" step="0.01" placeholder="0" value="'+(data.qty||"")+'" oninput="calcYield(this)"></div>'+
     '<div class="field"><label>Ед.</label><select class="item-output-unit" onchange="calcYield(this)">'+uo(outU)+'</select></div>'+
     '<div class="field"><label>Коэф. м²/шт</label><input type="number" class="item-output-rate" min="0" step="0.001" placeholder="1" value="'+outR+'" oninput="calcYield(this)"></div>'+
     '<div class="field"><label>Пересчёт в м²</label><div class="m2-hint item-output-m2-hint">'+outM2+'</div></div></div></div>'+
-    '<div class="item-footer"><div class="item-yield-box"><span class="item-yield-label">Выход:</span><span class="item-yield-value item-yield">'+yv+'</span></div>'+
+    '<div class="item-footer"><div class="item-yield-box"><span class="item-yield-label">Выход:</span><span class="item-yield-value item-yield">'+yv+'</span><span class="item-norm-hint"></span></div>'+
     '<button class="remove-item" onclick="removeItemRow(this)">✕ Удалить позицию</button></div>';
   attachAutocomplete(div.querySelector(".item-input-material"),"materials");
   attachAutocomplete(div.querySelector(".item-product"),"semiproducts");
@@ -681,9 +892,17 @@ function calcYield(input){
   const oU=row.querySelector(".item-output-unit").value,iU=row.querySelector(".item-input-unit").value;
   const oR=parseFloat(row.querySelector(".item-output-rate").value)||1,iR=parseFloat(row.querySelector(".item-input-rate").value)||1;
   const yf=row.querySelector(".item-yield"),iH=row.querySelector(".item-input-m2-hint"),oH=row.querySelector(".item-output-m2-hint");
+  const nh=row.querySelector(".item-norm-hint");
+  const prod=row.querySelector(".item-product").value.trim();
+  const n=normFor(prod);
+  if(nh)nh.textContent=n?("норматив: "+n+"%"):"";
   const iM2=toSquareMeters(iq,iU,iR);iH.textContent=iq>0?(iU==="шт"?iq+" шт × "+iR+" = "+iM2.toFixed(2)+" м²":iq+" м²"):"";
   const oM2=toSquareMeters(q,oU,oR);oH.textContent=q>0?(oU==="шт"?q+" шт × "+oR+" = "+oM2.toFixed(2)+" м²":q+" м²"):"";
-  if(q>0&&iq>0&&iM2>0){const p=(oM2/iM2)*100;yf.textContent=p.toFixed(1)+"%";yf.style.color=p>=90?"var(--ok)":p>=70?"var(--warn)":"var(--danger)"}else{yf.textContent="—";yf.style.color="var(--muted)"}
+  if(q>0&&iq>0&&iM2>0){
+    const p=(oM2/iM2)*100;yf.textContent=p.toFixed(1)+"%";
+    if(n){yf.style.color=p>=n?"var(--ok)":p>=n-10?"var(--warn)":"var(--danger)"}
+    else{yf.style.color=p>=90?"var(--ok)":p>=70?"var(--warn)":"var(--danger)"}
+  }else{yf.textContent="—";yf.style.color="var(--muted)"}
 }
 function collectItems(cid){
   const items=[];
@@ -828,8 +1047,9 @@ function renderLog(){
       });
     }
     rec.items.forEach(function(item,idx){
-      const rowClass=idx===0?"group-start":"";const y=calcYieldValueFromItem(item);let yClass="";
-      if(y!=="—"){const yn=parseFloat(y);yClass=yn>=90?"yield-high":yn>=70?"yield-mid":"yield-low"}
+      const rowClass=idx===0?"group-start":"";const y=calcYieldValueFromItem(item);
+      const yClass=yieldClass(y,item.product);
+      const n=normFor(item.product);
       const inV=item.inputQty||0,inU=item.inputUnit||"м²",inR=item.inputRate||1,inM2=itemInputM2(item);
       const outV=item.qty||0,outU=item.outputUnit||"м²",outR=item.outputRate||1,outM2=itemOutputM2(item);
       let inSub="",outSub="";
@@ -845,7 +1065,7 @@ function renderLog(){
         '<td class="num"><span class="editable" onclick="startInlineEdit(this)" data-record-id="'+rec.id+'" data-item-idx="'+idx+'" data-field="inputQty" data-type="number" data-value="'+inV+'">'+inV+'</span> <span class="editable" onclick="startInlineEdit(this)" data-record-id="'+rec.id+'" data-item-idx="'+idx+'" data-field="inputUnit" data-type="select-unit" data-value="'+inU+'">'+inU+'</span></td>'+
         '<td><span class="editable" onclick="startInlineEdit(this)" data-record-id="'+rec.id+'" data-item-idx="'+idx+'" data-field="product" data-type="text-product" data-value="'+escAttr(item.product)+'" title="'+escAttr(item.product)+'">'+escHtml(item.product)+'</span>'+outSub+'</td>'+
         '<td class="num"><span class="editable" onclick="startInlineEdit(this)" data-record-id="'+rec.id+'" data-item-idx="'+idx+'" data-field="qty" data-type="number" data-value="'+outV+'">'+outV+'</span> <span class="editable" onclick="startInlineEdit(this)" data-record-id="'+rec.id+'" data-item-idx="'+idx+'" data-field="outputUnit" data-type="select-unit" data-value="'+outU+'">'+outU+'</span></td>'+
-        '<td class="num '+yClass+'">'+y+'</td>'+
+        '<td class="num '+yClass+'" title="'+(n?("норматив "+n+"%"):"")+'">'+y+(n?(' <span style="font-size:10px;color:var(--muted)">/'+n+'</span>'):'')+'</td>'+
         '<td class="num">'+dtCell+'</td>'+
         '<td class="col-actions"><button class="btn btn-outline btn-xs" onclick="openEditModal(\''+rec.id+'\')" title="Правка всей записи">✏️</button> <button class="btn btn-danger btn-xs" onclick="deleteRecord(\''+rec.id+'\')" title="Удалить">🗑</button></td>'+
       '</tr>';
@@ -912,7 +1132,7 @@ function renderAnalytics(){
   const byProd={};filtered.forEach(function(r){r.items.forEach(function(i){const pr=i.product||"Без названия";if(!byProd[pr])byProd[pr]={count:0,a:0,b:0};byProd[pr].count++;byProd[pr].a+=itemInputM2(i);byProd[pr].b+=itemOutputM2(i)})});
   const prodKeys=Object.keys(byProd).sort(function(a,b){return byProd[b].b-byProd[a].b});
   if(prodKeys.length===0){pb.innerHTML="";pe.style.display="block"}
-  else{pe.style.display="none";pb.innerHTML=prodKeys.map(function(pr){const x=byProd[pr],y=x.a>0?((x.b/x.a)*100).toFixed(1)+"%":"—";return '<tr><td><b>'+escHtml(pr)+'</b></td><td class="num">'+x.count+'</td><td class="num">'+x.b.toFixed(1)+'</td><td class="num">'+x.a.toFixed(1)+'</td><td class="num">'+y+'</td></tr>'}).join("")}
+  else{pe.style.display="none";pb.innerHTML=prodKeys.map(function(pr){const x=byProd[pr];const y=x.a>0?((x.b/x.a)*100):null;const yStr=y!==null?y.toFixed(1)+"%":"—";const n=normFor(pr);const dev=(n&&y!==null)?(y-n):null;let devStr="—",devCls="";if(dev!==null){devStr=(dev>=0?"+":"")+dev.toFixed(1);devCls=dev>=0?"yield-high":dev>=-10?"yield-mid":"yield-low"}return '<tr><td><b>'+escHtml(pr)+'</b></td><td class="num">'+x.count+'</td><td class="num">'+x.b.toFixed(1)+'</td><td class="num">'+x.a.toFixed(1)+'</td><td class="num '+yieldClass(yStr,pr)+'">'+yStr+'</td><td class="num">'+(n?n+"%":"—")+'</td><td class="num '+devCls+'">'+devStr+'</td></tr>'}).join("")}
   const db2=document.getElementById("downtime-details-body"),de=document.getElementById("details-empty");
   if(dtAll.length===0){db2.innerHTML="";de.style.display="block"}
   else{de.style.display="none";db2.innerHTML=dtAll.slice().sort(function(a,b){return b.rec.date.localeCompare(a.rec.date)}).map(function(x){return '<tr><td>'+formatDate(x.rec.date)+'</td><td>'+escHtml(x.rec.workCenter)+'</td><td>'+escHtml(x.rec.name)+'</td><td>'+escHtml(x.reason)+'</td><td class="num downtime">'+x.minutes+'</td></tr>'}).join("")}
@@ -973,16 +1193,16 @@ function renderCenterBars(mr,plan){
 
 function exportCSV(){
   if(records.length===0){showToast("Нет данных!",true);return}
-  const BOM="\uFEFF";let csv=BOM+"Дата;Фамилия;РЦ;Входящий материал;Хар-ка материала;Переработано;Ед.вх.;Коэф.вх.;Переработано (м²);Полуфабрикат;Хар-ка полуфабриката;Готово;Ед.вых.;Коэф.вых.;Готово (м²);Выход %;Простой (мин);Причины простоя\n";
-  records.forEach(function(r){r.items.forEach(function(i){csv+=formatDate(r.date)+";"+r.name+";"+r.workCenter+";"+(i.inputMaterial||"—")+";"+(i.inputChar||"")+";"+(i.inputQty||0)+";"+(i.inputUnit||"м²")+";"+(i.inputRate||1)+";"+itemInputM2(i).toFixed(2)+";"+i.product+";"+(i.productChar||"")+";"+(i.qty||0)+";"+(i.outputUnit||"м²")+";"+(i.outputRate||1)+";"+itemOutputM2(i).toFixed(2)+";"+calcYieldValueFromItem(i)+";"+(r.downtime||0)+";"+(r.reason||"Нет")+"\n"})});
+  const BOM="\uFEFF";let csv=BOM+"Дата;Фамилия;РЦ;Входящий материал;Хар-ка материала;Переработано;Ед.вх.;Коэф.вх.;Переработано (м²);Полуфабрикат;Хар-ка полуфабриката;Готово;Ед.вых.;Коэф.вых.;Готово (м²);Выход %;Норматив %;Простой (мин);Причины простоя\n";
+  records.forEach(function(r){r.items.forEach(function(i){const n=normFor(i.product);csv+=formatDate(r.date)+";"+r.name+";"+r.workCenter+";"+(i.inputMaterial||"—")+";"+(i.inputChar||"")+";"+(i.inputQty||0)+";"+(i.inputUnit||"м²")+";"+(i.inputRate||1)+";"+itemInputM2(i).toFixed(2)+";"+i.product+";"+(i.productChar||"")+";"+(i.qty||0)+";"+(i.outputUnit||"м²")+";"+(i.outputRate||1)+";"+itemOutputM2(i).toFixed(2)+";"+calcYieldValueFromItem(i)+";"+(n?n:"")+";"+(r.downtime||0)+";"+(r.reason||"Нет")+"\n"})});
   downloadBlob(new Blob([csv],{type:"text/csv;charset=utf-8;"}),"cnc_report_"+new Date().toISOString().split("T")[0]+".csv");showToast("CSV выгружен!");
 }
 function exportExcel(){
   if(records.length===0){showToast("Нет данных!",true);return}
   const th='style="background:#9a6b3f;color:#ffffff;font-weight:bold;border:1px solid #999;padding:6px"';const td='style="border:1px solid #999;padding:5px"';const tdn='style="border:1px solid #999;padding:5px;text-align:right;mso-number-format:0.00"';
   let html='<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel"><head><meta charset="UTF-8"><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>Журнал ЧПУ</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table border="1">';
-  html+='<tr><th '+th+'>Дата</th><th '+th+'>Фамилия</th><th '+th+'>РЦ</th><th '+th+'>Входящий материал</th><th '+th+'>Хар-ка материала</th><th '+th+'>Переработано</th><th '+th+'>Ед.</th><th '+th+'>Коэф.</th><th '+th+'>Переработано м²</th><th '+th+'>Полуфабрикат</th><th '+th+'>Хар-ка полуфабриката</th><th '+th+'>Готово</th><th '+th+'>Ед.</th><th '+th+'>Коэф.</th><th '+th+'>Готово м²</th><th '+th+'>Выход %</th><th '+th+'>Простой мин</th><th '+th+'>Причины простоя</th></tr>';
-  records.forEach(function(r){r.items.forEach(function(i){html+='<tr><td '+td+'>'+formatDate(r.date)+'</td><td '+td+'>'+escHtml(r.name)+'</td><td '+td+'>'+escHtml(r.workCenter)+'</td><td '+td+'>'+escHtml(i.inputMaterial||"—")+'</td><td '+td+'>'+escHtml(i.inputChar||"")+'</td><td '+tdn+'>'+(i.inputQty||0)+'</td><td '+td+'>'+(i.inputUnit||"м²")+'</td><td '+tdn+'>'+(i.inputRate||1)+'</td><td '+tdn+'>'+itemInputM2(i).toFixed(2)+'</td><td '+td+'>'+escHtml(i.product)+'</td><td '+td+'>'+escHtml(i.productChar||"")+'</td><td '+tdn+'>'+(i.qty||0)+'</td><td '+td+'>'+(i.outputUnit||"м²")+'</td><td '+tdn+'>'+(i.outputRate||1)+'</td><td '+tdn+'>'+itemOutputM2(i).toFixed(2)+'</td><td '+tdn+'>'+calcYieldValueFromItem(i)+'</td><td '+tdn+'>'+(r.downtime||0)+'</td><td '+td+'>'+escHtml(r.reason||"Нет")+'</td></tr>'})});
+  html+='<tr><th '+th+'>Дата</th><th '+th+'>Фамилия</th><th '+th+'>РЦ</th><th '+th+'>Входящий материал</th><th '+th+'>Хар-ка материала</th><th '+th+'>Переработано</th><th '+th+'>Ед.</th><th '+th+'>Коэф.</th><th '+th+'>Переработано м²</th><th '+th+'>Полуфабрикат</th><th '+th+'>Хар-ка полуфабриката</th><th '+th+'>Готово</th><th '+th+'>Ед.</th><th '+th+'>Коэф.</th><th '+th+'>Готово м²</th><th '+th+'>Выход %</th><th '+th+'>Норматив %</th><th '+th+'>Простой мин</th><th '+th+'>Причины простоя</th></tr>';
+  records.forEach(function(r){r.items.forEach(function(i){const n=normFor(i.product);html+='<tr><td '+td+'>'+formatDate(r.date)+'</td><td '+td+'>'+escHtml(r.name)+'</td><td '+td+'>'+escHtml(r.workCenter)+'</td><td '+td+'>'+escHtml(i.inputMaterial||"—")+'</td><td '+td+'>'+escHtml(i.inputChar||"")+'</td><td '+tdn+'>'+(i.inputQty||0)+'</td><td '+td+'>'+(i.inputUnit||"м²")+'</td><td '+tdn+'>'+(i.inputRate||1)+'</td><td '+tdn+'>'+itemInputM2(i).toFixed(2)+'</td><td '+td+'>'+escHtml(i.product)+'</td><td '+td+'>'+escHtml(i.productChar||"")+'</td><td '+tdn+'>'+(i.qty||0)+'</td><td '+td+'>'+(i.outputUnit||"м²")+'</td><td '+tdn+'>'+(i.outputRate||1)+'</td><td '+tdn+'>'+itemOutputM2(i).toFixed(2)+'</td><td '+tdn+'>'+calcYieldValueFromItem(i)+'</td><td '+tdn+'>'+(n?n:"")+'</td><td '+tdn+'>'+(r.downtime||0)+'</td><td '+td+'>'+escHtml(r.reason||"Нет")+'</td></tr>'})});
   html+='</table></body></html>';downloadBlob(new Blob(["\ufeff"+html],{type:"application/vnd.ms-excel"}),"cnc_report_"+new Date().toISOString().split("T")[0]+".xls");showToast("Excel выгружен!");
 }
 function downloadBlob(blob,name){const link=document.createElement("a");link.href=URL.createObjectURL(blob);link.download=name;link.click()}
@@ -992,6 +1212,7 @@ function renderAll(){renderLog();renderDays();renderMonths()}
 
 window.showTab=showTab;window.addItemToForm=addItemToForm;window.removeItemRow=removeItemRow;window.calcYield=calcYield;
 window.addDtRow=addDtRow;window.removeDtRow=removeDtRow;window.recalcDtTotal=recalcDtTotal;
+window.dictAdd=dictAdd;window.dictDel=dictDel;window.dictRename=dictRename;window.normSet=normSet;window.normDel=normDel;
 window.addRecord=addRecord;window.openEditModal=openEditModal;window.closeEditModal=closeEditModal;window.saveEdit=saveEdit;
 window.startInlineEdit=startInlineEdit;window.deleteRecord=deleteRecord;window.clearAll=clearAll;
 window.onFilterChange=onFilterChange;window.undo=undo;window.redo=redo;
